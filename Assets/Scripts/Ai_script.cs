@@ -4,24 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 public class Ai_script : MonoBehaviour
 {
-    // Script qui gère le comportement des monstres du jeu.
-    // Par défault, il suit un chemain et si le joueur apparait
-    // dans son champs de vision, il le poursuit. S'il disparait pour
-    // plus de X secondes, il revient sur son chemain.
-    public GameObject joueur; // réfère au joueur
-    public NavMeshAgent navAgent; //réfère au navMeshAgent
-    public Transform[] waypoints; //Tableau des waypoints
-    int numWaypoint = 0; //index
-    public static bool enChasse = false; // indique si le monstre poursuit le joueur
+    public GameObject MaDestination;
+    NavMeshAgent navAgent;
 
     void Start()
     {
-        enChasse = false; // Au début, il ne le poursuit pas
-        navAgent = GetComponent<NavMeshAgent>(); // assossit le navAgent au component
-        navAgent.SetDestination(waypoints[0].position); // comment par le premier waypoint
+        navAgent = GetComponent<NavMeshAgent>();
     }
     void Update()
     {
+<<<<<<< HEAD
         if(enChasse){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
         } 
@@ -47,6 +39,10 @@ public class Ai_script : MonoBehaviour
             print(numWaypoint);
     }
         
+=======
+        navAgent.SetDestination(MaDestination.transform.position); //la destination doit �tre un Vector3 
+        print(navAgent.velocity.magnitude);  //imprime la vitesse de d�placement de l�agent
+>>>>>>> parent of 29593d9 (AI suit waypoints)
     }
 }
 
