@@ -11,7 +11,8 @@ public class DeplacementPersoScript : MonoBehaviour
     public float vitesseVerticaleFPS = 2f; //sensibilité verticale de la souris
     public float rotationV;  // angle de rotation verticale total en degré selon le mouvement vertical de la souris
     #endregion
-
+    public Collider lumiereCol;
+    public bool lumiereAllumee;
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
@@ -29,6 +30,7 @@ public class DeplacementPersoScript : MonoBehaviour
     void Start()
     {
         rigidbodyPerso = GetComponent<Rigidbody>();
+        lumiereCol.enabled = false;
     }
 
     // Update is called once per frame
@@ -61,6 +63,20 @@ public class DeplacementPersoScript : MonoBehaviour
 
             GetComponent<Rigidbody>().velocity = transform.forward * vDeplacementFPS + transform.right * hDeplacementFPS + new Vector3(0, rigidbodyPerso.velocity.y, 0);
 
+            #endregion
+
+            #region lampeDePoche
+            // On allumer / ferme le collider de la lampe de poche en fonction de son état
+            if (Input.GetKeyDown(KeyCode.F) && lumiereAllumee == false)
+            {
+                lumiereAllumee = true;
+                lumiereCol.enabled = true;
+            }
+            else if(Input.GetKeyDown(KeyCode.F) && lumiereAllumee == true)
+            {
+                lumiereAllumee = false;
+                lumiereCol.enabled = false;
+            }
             #endregion
         }
     }

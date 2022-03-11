@@ -9,44 +9,44 @@ public class Ai_script : MonoBehaviour
     // dans son champs de vision, il le poursuit. S'il disparait pour
     // plus de X secondes, il revient sur son chemain.
     public GameObject joueur; // réfère au joueur
+
     public NavMeshAgent navAgent; //réfère au navMeshAgent
     public Transform[] waypoints; //Tableau des waypoints
     int numWaypoint = 0; //index
+  
     public static bool enChasse = false; // indique si le monstre poursuit le joueur
 
     void Start()
     {
         enChasse = false; // Au début, il ne le poursuit pas
-        navAgent = GetComponent<NavMeshAgent>(); // assossit le navAgent au component
+        // navAgent = GetComponent<NavMeshAgent>(); // assossit le navAgent au component
         navAgent.SetDestination(waypoints[0].position); // comment par le premier waypoint
     }
     void Update()
     {
-        if(enChasse){
+        // renvoie lien si un object se trouve entre le joueur et le monstre
+        RaycastHit lien;
+        Physics.Linecast(transform.position, joueur.transform.position, out lien);
+        if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
-        } 
+        }
         
     }
     // Cette fonction se fait appeler après que le monstre ait touché un waypoint
-    void AllerAuProchainPoint() {
+    public void AllerAuProchainPoint() {
     if(!enChasse && numWaypoint <= waypoints.Length){
         navAgent.SetDestination(waypoints[numWaypoint].position); //poursuit le prochain waypoint
-        print("Je vais au point" + waypoints[numWaypoint]);
         }
     }
 
-    
     private void OnTriggerEnter(Collider InfoCol) {
         if(InfoCol.gameObject.tag == "waypoint"){ //si le monstre touche un waypoint
             numWaypoint += 1; //index augmente de 1
-            if(numWaypoint == waypoints.Length)
-            { //s'il dépace le waypointMax + 1 il revient à 0
+            if(numWaypoint == waypoints.Length){ //s'il dépace le waypointMax + 1 il revient à 0
                 numWaypoint = 0;
             }
             AllerAuProchainPoint(); // appel la fonction AllerAuprochainPoint
-            print(numWaypoint);
-    }
-        
+        }
     }
 }
 
