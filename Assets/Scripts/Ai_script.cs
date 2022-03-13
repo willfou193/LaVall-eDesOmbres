@@ -9,6 +9,7 @@ public class Ai_script : MonoBehaviour
     // dans son champs de vision, il le poursuit. S'il disparait pour
     // plus de X secondes, il revient sur son chemain.
     public GameObject joueur; // réfère au joueur
+    
     public float tempsInvulnerable;
 
     public NavMeshAgent navAgent; //réfère au navMeshAgent
@@ -45,9 +46,16 @@ public class Ai_script : MonoBehaviour
         }
     }
 
+    public void AppelerFonctionResetInvul(){
+        Invoke("LeMonstreCourt",5f);
+    }
     public void resetInvulnerabiliteEtourdi(){
         InvulnerableEtourdi = false;
         print("ÇA MARCHHHHHHHHE");
+    }
+    public void LeMonstreCourt()
+    {
+       navAgent.speed = 3f;
     }
 
     private void OnTriggerEnter(Collider InfoCol) {
