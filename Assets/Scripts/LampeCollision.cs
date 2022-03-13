@@ -23,10 +23,11 @@ public class LampeCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider infoCol)
     {
-        if(infoCol.gameObject.tag == "monstre")
+        if(infoCol.gameObject.tag == "monstre" && Ai_script.InvulnerableEtourdi == false)
         {
-            print("Arrête toi!");
+            print("Arrï¿½te toi!");
             monstre.GetComponent<Ai_script>().navAgent.speed = 0;
+            Ai_script.InvulnerableEtourdi = true;
             Invoke("LeMonstreCourt", 5f);
 
         }

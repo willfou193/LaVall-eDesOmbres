@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
-    //Déclaration des variables
+    //Dï¿½claration des variables
     #region VariablesCamFPS
     public GameObject cameraFPS; // camera FPS pour le personnage
-    public float vitesseHorizontaleFPS = 2f;   //sensibilité horizontale de la souris
-    public float vitesseVerticaleFPS = 2f; //sensibilité verticale de la souris
-    public float rotationV;  // angle de rotation verticale total en degré selon le mouvement vertical de la souris
+    public float vitesseHorizontaleFPS = 2f;   //sensibilitï¿½ horizontale de la souris
+    public float vitesseVerticaleFPS = 2f; //sensibilitï¿½ verticale de la souris
+    public float rotationV;  // angle de rotation verticale total en degrï¿½ selon le mouvement vertical de la souris
     #endregion
     public Collider lumiereCol;
     public bool lumiereAllumee;
+    public Light lampDePoche;
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
     #endregion
 
-    public float vitesseDeplacement; // vitesse du déplacement du personnage
+    public float vitesseDeplacement; // vitesse du dï¿½placement du personnage
     public float hauteurSaut; // hauteur du saut du personnage
-    Vector3 vitesseDepAnim; // vitesse du déplacement pour l'animator
+    Vector3 vitesseDepAnim; // vitesse du dï¿½placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
 
     public static bool mort; // savoir si le personnage est mort ou vivant
-    public Vector3 posCheckpointActif; // position du checkpoint présentemment actif
+    public Vector3 posCheckpointActif; // position du checkpoint prï¿½sentemment actif
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbodyPerso = GetComponent<Rigidbody>();
         lumiereCol.enabled = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        {
+             
+        }
     }
 
     // Update is called once per frame
@@ -49,13 +54,13 @@ public class DeplacementPersoScript : MonoBehaviour
             transform.Rotate(0, rotationH, 0);
 
 
-            //Ce bloc obtient la variation de la position verticale de la souris et tourne la caméra FPS avec des limites
+            //Ce bloc obtient la variation de la position verticale de la souris et tourne la camï¿½ra FPS avec des limites
             rotationV += Input.GetAxis("Mouse Y") * vitesseVerticaleFPS;
 
-            // limite la valeur de l’angle de rotation entre une min et une max
+            // limite la valeur de lï¿½angle de rotation entre une min et une max
             rotationV = Mathf.Clamp(rotationV, -45, 45);
 
-            // on applique les angles de rotation à la caméra, 
+            // on applique les angles de rotation ï¿½ la camï¿½ra, 
             cameraFPS.transform.localEulerAngles = new Vector3(-rotationV, 0, 0);
 
             float vDeplacementFPS = Input.GetAxis("Vertical") * vitesseDeplacement;
@@ -66,16 +71,18 @@ public class DeplacementPersoScript : MonoBehaviour
             #endregion
 
             #region lampeDePoche
-            // On allumer / ferme le collider de la lampe de poche en fonction de son état
+            // On allumer / ferme le collider de la lampe de poche en fonction de son ï¿½tat
             if (Input.GetKeyDown(KeyCode.F) && lumiereAllumee == false)
             {
                 lumiereAllumee = true;
                 lumiereCol.enabled = true;
+                lampDePoche.enabled = true;
             }
             else if(Input.GetKeyDown(KeyCode.F) && lumiereAllumee == true)
             {
                 lumiereAllumee = false;
                 lumiereCol.enabled = false;
+                lampDePoche.enabled = false;
             }
             #endregion
         }

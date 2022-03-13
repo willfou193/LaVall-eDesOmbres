@@ -9,12 +9,15 @@ public class Ai_script : MonoBehaviour
     // dans son champs de vision, il le poursuit. S'il disparait pour
     // plus de X secondes, il revient sur son chemain.
     public GameObject joueur; // réfère au joueur
+    public float tempsInvulnerable;
 
     public NavMeshAgent navAgent; //réfère au navMeshAgent
     public Transform[] waypoints; //Tableau des waypoints
     int numWaypoint = 0; //index
   
     public static bool enChasse = false; // indique si le monstre poursuit le joueur
+    public static bool InvulnerableEtourdi = false; // indique si le monstre peut être étourdi de nouveau
+
 
     void Start()
     {
@@ -30,6 +33,9 @@ public class Ai_script : MonoBehaviour
         if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
         }
+        if(InvulnerableEtourdi){
+            Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable);
+        }
         
     }
     // Cette fonction se fait appeler après que le monstre ait touché un waypoint
@@ -37,6 +43,11 @@ public class Ai_script : MonoBehaviour
     if(!enChasse && numWaypoint <= waypoints.Length){
         navAgent.SetDestination(waypoints[numWaypoint].position); //poursuit le prochain waypoint
         }
+    }
+
+    public void resetInvulnerabiliteEtourdi(){
+        InvulnerableEtourdi = false;
+        print("ÇA MARCHHHHHHHHE");
     }
 
     private void OnTriggerEnter(Collider InfoCol) {
