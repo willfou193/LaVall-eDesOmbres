@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 914822722}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Untagged
+  m_TagString: monstre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 1701675747}
   m_Layer: 0
   m_Name: ennemis
-  m_TagString: Untagged
+  m_TagString: monstre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joueur: {fileID: 0}
+  tempsInvulnerable: 10
   navAgent: {fileID: 9101513890944145964}
   waypoints:
   - {fileID: 0}
