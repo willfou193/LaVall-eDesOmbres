@@ -12,8 +12,8 @@ public class DeplacementPersoScript : MonoBehaviour
     public float rotationV;  // angle de rotation verticale total en degr� selon le mouvement vertical de la souris
     #endregion
     public Collider lumiereCol;
-    public bool lumiereAllumee;
-    public Light lampDePoche;
+    public bool lampeUvAllumee;
+    public Light lampeUV;
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
@@ -71,18 +71,18 @@ public class DeplacementPersoScript : MonoBehaviour
             #endregion
 
             #region lampeDePoche
-            // On allumer / ferme le collider de la lampe de poche en fonction de son �tat
-            if (Input.GetKeyDown(KeyCode.F) && lumiereAllumee == false)
+            // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
+            if (Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == false)
             {
-                lumiereAllumee = true;
+                lampeUvAllumee = true;
                 lumiereCol.enabled = true;
-                lampDePoche.enabled = true;
+                lampeUV.enabled = true;
             }
-            else if(Input.GetKeyDown(KeyCode.F) && lumiereAllumee == true)
+            else if(Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == true)
             {
-                lumiereAllumee = false;
+                lampeUvAllumee = false;
                 lumiereCol.enabled = false;
-                lampDePoche.enabled = false;
+                lampeUV.enabled = false;
             }
             #endregion
         }

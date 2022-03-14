@@ -16,8 +16,8 @@ public class Ai_script : MonoBehaviour
     public Transform[] waypoints; //Tableau des waypoints
     int numWaypoint = 0; //index
   
-    public static bool enChasse = false; // indique si le monstre poursuit le joueur
-    public static bool InvulnerableEtourdi = false; // indique si le monstre peut être étourdi de nouveau
+    public bool enChasse = false; // indique si le monstre poursuit le joueur
+    public bool invulnerableEtourdi = false; // indique si le monstre peut être étourdi de nouveau
 
 
     void Start()
@@ -34,11 +34,12 @@ public class Ai_script : MonoBehaviour
         if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
         }
-        if(InvulnerableEtourdi){
-            Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable);
+        if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
+            Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
         }
-        
-    }
+    } // Fin du Update
+
+
     // Cette fonction se fait appeler après que le monstre ait touché un waypoint
     public void AllerAuProchainPoint() {
     if(!enChasse && numWaypoint <= waypoints.Length){
@@ -46,12 +47,12 @@ public class Ai_script : MonoBehaviour
         }
     }
 
+
     public void AppelerFonctionResetInvul(){
         Invoke("LeMonstreCourt",5f);
     }
     public void resetInvulnerabiliteEtourdi(){
-        InvulnerableEtourdi = false;
-        print("ÇA MARCHHHHHHHHE");
+        invulnerableEtourdi = false;
     }
     public void LeMonstreCourt()
     {

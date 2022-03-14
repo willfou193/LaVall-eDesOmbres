@@ -14,7 +14,7 @@ public class vision_AI : MonoBehaviour {
     {
         if(InfoCol.gameObject.tag == "Player")
         {
-            Ai_script.enChasse = true; // retourne la variable enChasse a true dans le script Ai_script
+            AI.GetComponent<Ai_script>().enChasse = true; // retourne la variable enChasse a true dans le script Ai_script
             CancelInvoke("ReinitialisationChasse"); //rafraîchit le temps avant que le monstre retourne sur son chemain
         }
     }
@@ -30,7 +30,7 @@ public class vision_AI : MonoBehaviour {
     //le monstre à perdu de vision le joueur, il retourne donc à son chemin de ronde.
     void ReinitialisationChasse()
     {
-        Ai_script.enChasse = false;
+        AI.GetComponent<Ai_script>().enChasse = false;
         AI.GetComponent<Ai_script>().AllerAuProchainPoint();
     }
 }

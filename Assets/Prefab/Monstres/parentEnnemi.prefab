@@ -321,6 +321,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enChasse: 0
+  invulnerableEtourdi: 0
 --- !u!1001 &9101513890843126780
 PrefabInstance:
   m_ObjectHideFlags: 0
