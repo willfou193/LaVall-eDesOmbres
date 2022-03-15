@@ -5,6 +5,8 @@ using UnityEngine;
 public class santeMental : MonoBehaviour
 {
     public float rayonCol = 10f;
+    float santeMentale = 100;
+    float santeMentaleMax = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,20 +22,14 @@ public class santeMental : MonoBehaviour
             if(objectTouchee.gameObject.tag == "monstre")
             {
                 RaycastHit lien;
-                Physics.Linecast(transform.position, gameObject.transform.position, out lien);
+                Physics.Linecast(transform.position, objectTouchee.transform.position, out lien);
                 if(!(lien.transform.tag == "terrain"))
                 {
                     float distance = Vector3.Distance(objectTouchee.transform.position, transform.position);
-                    print(distance);
+                    santeMentale -= Mathf.Pow(santeMentale, distance);
+                    print(santeMentale);
                     //descendre la santé mental
                 }
-
-
-
-
-         
-
-
             }
             
         }
