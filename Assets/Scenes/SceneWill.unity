@@ -534,11 +534,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98632747}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!108 &341612964 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 3294253129946045434, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-  m_PrefabInstance: {fileID: 3089295756462462059}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &364294841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,6 +3054,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 428695731236656306, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: rayonCol
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3104,13 +3103,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706153, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 3089295755384706153, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_Name
       value: joueur
       objectReference: {fileID: 0}
-    - target: {fileID: 3089295755384706159, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: lampeUV
-      value: 
-      objectReference: {fileID: 341612964}
+    - target: {fileID: 3089295755384706157, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
 --- !u!1001 &9101513890489732942
