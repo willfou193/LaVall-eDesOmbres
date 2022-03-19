@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - waypoint
+  - terrain
+  - monstre
+  - feuDeCamp
   layers:
   - Default
   - TransparentFX

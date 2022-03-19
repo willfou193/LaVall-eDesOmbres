@@ -11,9 +11,12 @@ public class DeplacementPersoScript : MonoBehaviour
     public float vitesseVerticaleFPS = 2f; //sensibilit� verticale de la souris
     public float rotationV;  // angle de rotation verticale total en degr� selon le mouvement vertical de la souris
     #endregion
-    public Collider lumiereCol;
-    public bool lampeUvAllumee;
-    public Light lampeUV;
+    #region lampeDePoche
+    public Collider lumiereCol; //collider de la lampe de poche
+    public bool lampeUvAllumee; // est-ce que la lampe UV est activee
+    public Light lampeUV; // active la lampe UV
+    float chargeLampe = 3; // nombr ede charge de la lampe UV
+    #endregion
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
@@ -33,9 +36,7 @@ public class DeplacementPersoScript : MonoBehaviour
         rigidbodyPerso = GetComponent<Rigidbody>();
         lumiereCol.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
-        {
-             
-        }
+        InvokeRepeating("RedonnerChargeLampe", 1f, 30f);
     }
 
     // Update is called once per frame
@@ -72,8 +73,10 @@ public class DeplacementPersoScript : MonoBehaviour
 
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
-            if (Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == false)
+            if (Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == false && chargeLampe >= 1)
             {
+                Invoke("FermerLampeUv", 3f);
+                chargeLampe -= 1;
                 lampeUvAllumee = true;
                 lumiereCol.enabled = true;
                 lampeUV.enabled = true;
@@ -85,6 +88,25 @@ public class DeplacementPersoScript : MonoBehaviour
                 lampeUV.enabled = false;
             }
             #endregion
+            print("j'ai " + chargeLampe + " charge dans la lampe UV");
+        }
+    }
+    void FermerLampeUv()
+    {
+        if(lampeUvAllumee == true)
+        {
+            lampeUvAllumee = false;
+            lumiereCol.enabled = false;
+            lampeUV.enabled = false;
+        }
+    }
+
+    // redonne une charge de la lampe à chaque X secondes 
+    void RedonnerChargeLampe()
+    {
+        if (chargeLampe <= 2)
+        {
+            chargeLampe += 1;
         }
     }
 }
