@@ -15,8 +15,10 @@ public class santeMentale : MonoBehaviour
     float sanite = 100f; // santé mentale
     float santeMentaleMax = 100f; // maximum que les feux de camps ne peuvent pas dépassé
     public Volume volume; //réfère au Volume post-processing
+    public Vignette _Vignette;
     public void Start() {
-        
+        volume.profile.TryGet<Vignette>(out _Vignette);
+        _Vignette.intensity.value = 0;
     }
 
     void Update()
@@ -39,12 +41,9 @@ public class santeMentale : MonoBehaviour
                 }
             }
         }
-        if (volume.profile.TryGet<Vignette>(out var vignette))
-        {
-            vignette.intensity.overrideState = true;
-            vignette.intensity.value = (sanite * 0.5f) / santeMentaleMax;
-        }
+        _Vignette.intensity.value = -0.005f * sanite + 0.5f; // renvoie le niveau de la santé mentale sur 0.5
         print(sanite);
+       
 
 
     }//fin du update
