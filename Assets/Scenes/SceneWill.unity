@@ -3103,22 +3103,6 @@ PrefabInstance:
       propertyPath: volume
       value: 
       objectReference: {fileID: 575523351}
-    - target: {fileID: 428695731236656306, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: rayonCol
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 428695731236656306, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: degatMaxDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 428695731236656306, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: degatMinDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 428695731236656306, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: regenerationSanteMentale
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3164,16 +3148,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706153, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 3089295755384706153, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_Name
       value: joueur
-      objectReference: {fileID: 0}
-    - target: {fileID: 3089295755384706157, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}

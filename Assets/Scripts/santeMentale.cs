@@ -6,19 +6,22 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Experimental.Rendering.Universal;
 public class santeMentale : MonoBehaviour
 {
-    public float rayonCol = 10f; // rayon du cercle de collision
+    public float rayonCol; // rayon du cercle de collision
     // le nombre inscrit a tendence à rapprocher les dégat/s à 1m, de ce nombre. EX: 30f = 30 degats/s si la distance est 1m
     public float degatMinDistance; 
-    // le nombre inscrit a tendance à rapprocher les dégats à 20m de ce nombre. EX: 4f = 4 degats/s si la distance est 20m
+    // le nombre inscrit a tendance à rapprocher les dégats à MAX distance de ce nombre. EX: 4f = 4 degats/s si la distance est 20m
     public float degatMaxDistance;
-    public float regenerationSanteMentale = 1f;
+    public float regenerationSanteMentale;
     float sanite = 100f; // santé mentale
     float santeMentaleMax = 100f; // maximum que les feux de camps ne peuvent pas dépassé
     public Volume volume; //réfère au Volume post-processing
     public Vignette _Vignette;
+    public ColorCurves _ColorCurves;
     public void Start() {
         volume.profile.TryGet<Vignette>(out _Vignette);
         _Vignette.intensity.value = 0;
+       
+    
     }
 
     void Update()
@@ -41,7 +44,7 @@ public class santeMentale : MonoBehaviour
                 }
             }
         }
-        _Vignette.intensity.value = -0.005f * sanite + 0.5f; // renvoie le niveau de la santé mentale sur 0.5
+        _Vignette.intensity.value = -0.01f * sanite + 1f; // renvoie le niveau de la santé mentale l'intensité voulu max
         print(sanite);
        
 

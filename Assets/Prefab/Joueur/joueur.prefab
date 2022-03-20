@@ -137,7 +137,7 @@ GameObject:
   m_Layer: 0
   m_Name: joueur
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -171,7 +171,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3089295755384706153}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -272,6 +272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dc41782eee94c44bf246e946cbe806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayonCol: 25
+  degatMinDistance: 30
+  degatMaxDistance: 3
+  regenerationSanteMentale: 10
+  volume: {fileID: 0}
+  _Vignette: {fileID: 0}
+  _ColorCurves: {fileID: 0}
 --- !u!1 &3089295756142489517
 GameObject:
   m_ObjectHideFlags: 0
