@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class DeplacementPersoScript : MonoBehaviour
     #endregion
     #region lampeDePoche
     public Collider lumiereCol; //collider de la lampe de poche
+    public int TempsAventRecharge;
     public bool lampeUvAllumee; // est-ce que la lampe UV est activee
     public Light lampeUV; // active la lampe UV
     float chargeLampe = 3; // nombr ede charge de la lampe UV
+    public Image charge1;
+    public Image charge2;
+    public Image charge3;
     #endregion
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
@@ -32,7 +37,7 @@ public class DeplacementPersoScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         rigidbodyPerso = GetComponent<Rigidbody>();
         lumiereCol.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -80,6 +85,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 lampeUvAllumee = true;
                 lumiereCol.enabled = true;
                 lampeUV.enabled = true;
+                MiseAJourLampe();
             }
             else if(Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == true)
             {
@@ -107,6 +113,34 @@ public class DeplacementPersoScript : MonoBehaviour
         if (chargeLampe <= 2)
         {
             chargeLampe += 1;
+            MiseAJourLampe();
+        }
+    }
+
+    void MiseAJourLampe()
+    {
+        switch (chargeLampe)
+        {
+            case 1:
+                charge1.enabled = false;
+                charge2.enabled = false;
+                charge3.enabled = true;
+                return;
+            case 2:
+                charge1.enabled = false;
+                charge2.enabled = true;
+                charge3.enabled = true;
+                return;
+            case 3:
+                charge1.enabled = true;
+                charge2.enabled = true;
+                charge3.enabled = true;
+                return;
+            default:
+                charge1.enabled = false;
+                charge2.enabled = false;
+                charge3.enabled = false;
+                return;
         }
     }
 }
