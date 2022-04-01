@@ -9,6 +9,7 @@ TagManager:
   - monstre
   - feuDeCamp
   - effetSable
+  - gaz
   layers:
   - Default
   - TransparentFX

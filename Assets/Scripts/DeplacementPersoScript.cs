@@ -12,7 +12,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public float vitesseVerticaleFPS = 2f; //sensibilit� verticale de la souris
     public float rotationV;  // angle de rotation verticale total en degr� selon le mouvement vertical de la souris
     #endregion
-    #region lampeDePoche
+    #region VariablelampeDePoche
     public Collider lumiereCol; //collider de la lampe de poche
     public int TempsAventRecharge;
     public bool lampeUvAllumee; // est-ce que la lampe UV est activee
@@ -31,6 +31,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public float hauteurSaut; // hauteur du saut du personnage
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
+    int nombreDeBaril;
 
     public static bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
@@ -48,7 +49,7 @@ public class DeplacementPersoScript : MonoBehaviour
     void Update()
     {
         RaycastHit infoObjets;
-        Physics.Raycast(raycastFPS.transform.position, raycastFPS.transform.forward, out infoObjets, -distanceActivableLoin);
+        
 
 
 
@@ -81,11 +82,11 @@ public class DeplacementPersoScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == false && chargeLampe >= 1)
             {
                 Invoke("FermerLampeUv", 3f);
-                chargeLampe -= 1;
+                chargeLampe -= 1; //enleve une charge
                 lampeUvAllumee = true;
                 lumiereCol.enabled = true;
                 lampeUV.enabled = true;
-                MiseAJourLampe();
+                MiseAJourLampe(); //appel la fonction de la mise a jour de la lampe
             }
             else if(Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == true)
             {
@@ -94,7 +95,18 @@ public class DeplacementPersoScript : MonoBehaviour
                 lampeUV.enabled = false;
             }
             #endregion
-            print("j'ai " + chargeLampe + " charge dans la lampe UV");
+            #region interaction
+            if (Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraFPS.transform.position, cameraFPS.transform.forward, out infoObjets, distanceActivableLoin))
+            {
+                if (infoObjets.collider.tag == "gaz")
+                {
+                    nombreDeBaril += 1;
+                    Destroy(infoObjets.collider.gameObject);
+                    print(nombreDeBaril);
+                }
+            }
+            
+            #endregion
         }
     }
     void FermerLampeUv()
@@ -117,7 +129,7 @@ public class DeplacementPersoScript : MonoBehaviour
         }
     }
 
-    void MiseAJourLampe()
+    void MiseAJourLampe() // Switch case en fonction du nombre de charge
     {
         switch (chargeLampe)
         {

@@ -48,7 +48,9 @@ public class santeMentale : MonoBehaviour
             }
             if(objectTouchee.gameObject.tag =="effetSable")
             {
+
                 print("Je touche une zone de sable!");
+                objectTouchee.gameObject.SetActive(true);
             }
         }
         _Vignette.intensity.value = -0.008f * sanite + 0.8f; // renvoie le niveau de la santé mentale l'intensité voulu max
