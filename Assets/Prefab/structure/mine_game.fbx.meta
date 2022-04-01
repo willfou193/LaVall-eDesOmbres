@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Default Material2
-    second: {fileID: 2100000, guid: 568f859f58f47054f8b45bdb577778f0, type: 2}
+    second: {fileID: 2100000, guid: 2ee659b5370253a4f9daf0171cc39621, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -18,12 +18,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: blinn6
-    second: {fileID: 2100000, guid: 568f859f58f47054f8b45bdb577778f0, type: 2}
+    second: {fileID: 2100000, guid: 2ee659b5370253a4f9daf0171cc39621, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: blinn7
-    second: {fileID: 2100000, guid: 568f859f58f47054f8b45bdb577778f0, type: 2}
+    second: {fileID: 2100000, guid: f7d10ca3e00457742a6d6fc070b22f37, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -105,7 +105,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.049999997
+    globalScale: 5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
