@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Experimental.Rendering.Universal;
 public class santeMentale : MonoBehaviour
@@ -11,23 +12,25 @@ public class santeMentale : MonoBehaviour
     public float degatMinDistance; 
     // le nombre inscrit a tendance à rapprocher les dégats à MAX distance de ce nombre. EX: 4f = 4 degats/s si la distance est 20m
     public float degatMaxDistance;
-    public float regenerationSanteMentale;
+    public float regenerationSanteMentale; // vitesse auquel le feu redonner de la sante mentale
     float sanite = 100f; // santé mentale
     float santeMentaleMax = 100f; // maximum que les feux de camps ne peuvent pas dépassé
     public Volume volume; //réfère au Volume post-processing
-    public Vignette _Vignette;
-    public ColorCurves _ColorCurves;
+    public Vignette _Vignette; // Post-processing vignettage
+    public FilmGrain _Grain; // Post-processing vignettage
+    public Text santeMentaleUi;
+
     public void Start() {
         volume.profile.TryGet<Vignette>(out _Vignette);
         _Vignette.intensity.value = 0;
-       
-    
+        volume.profile.TryGet<FilmGrain>(out _Grain);
+        _Grain.intensity.value = 0;
     }
 
     void Update()
     {   //créer un cercle autour du joueur et créer un tableau de collider de ce qu'il touche
         Collider[] objectsDansCercle = Physics.OverlapSphere(gameObject.transform.position, rayonCol); 
-        foreach (var objectTouchee in objectsDansCercle) // pour chaque object dans le cercle
+        foreach (var objectTouchee in objectsDansCercle) // pour chaque object dans le cercle 
         {
             if(objectTouchee.gameObject.tag == "monstre") // on s'assure que les objets soient des monstres
             {
@@ -43,9 +46,14 @@ public class santeMentale : MonoBehaviour
                     //print(distance + "Mètre est la distance et la santé mentale est de " + sanite);
                 }
             }
+            if(objectTouchee.gameObject.tag =="effetSable")
+            {
+                print("Je touche une zone de sable!");
+            }
         }
-        _Vignette.intensity.value = -0.01f * sanite + 1f; // renvoie le niveau de la santé mentale l'intensité voulu max
-        print(sanite);
+        _Vignette.intensity.value = -0.008f * sanite + 0.8f; // renvoie le niveau de la santé mentale l'intensité voulu max
+        _Grain.intensity.value = -0.01f * sanite + 1f; // renvoie le niveau de la santé mentale l'intensité voulu max
+        santeMentaleUi.text = Mathf.RoundToInt(sanite).ToString() + "%"; //On affiche la sante mentale en texte
        
 
 
