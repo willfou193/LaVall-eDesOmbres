@@ -872,6 +872,10 @@ PrefabInstance:
       propertyPath: lampeUV
       value: 
       objectReference: {fileID: 1763080812}
+    - target: {fileID: 3089295755384706159, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: distanceActivableLoin
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
 --- !u!1 &869880936 stripped
