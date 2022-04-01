@@ -253,8 +253,12 @@ MonoBehaviour:
   vitesseVerticaleFPS: 2
   rotationV: 4
   lumiereCol: {fileID: 3089295755842193349}
+  TempsAventRecharge: 10
   lampeUvAllumee: 0
   lampeUV: {fileID: 3294253129946045434}
+  charge1: {fileID: 0}
+  charge2: {fileID: 0}
+  charge3: {fileID: 0}
   raycastFPS: {fileID: 3089295756142489517}
   distanceActivableLoin: 0
   vitesseDeplacement: 10

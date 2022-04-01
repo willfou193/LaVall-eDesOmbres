@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/scene_intro.unity
     guid: 60465a51e1ffa58439c9c3186fc1817e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/laValleedesOmbres.unity
+    guid: fdf4627208eaddf47a466475e9016c43
   m_configObjects: {}

@@ -8,6 +8,7 @@ TagManager:
   - terrain
   - monstre
   - feuDeCamp
+  - effetSable
   layers:
   - Default
   - TransparentFX
