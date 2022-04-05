@@ -78,7 +78,6 @@ public class DeplacementPersoScript : MonoBehaviour
             GetComponent<Rigidbody>().velocity = transform.forward * vDeplacementFPS + transform.right * hDeplacementFPS + new Vector3(0, rigidbodyPerso.velocity.y, 0);
 
             #endregion
-
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
             if (Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == false && chargeLampe >= 1)
