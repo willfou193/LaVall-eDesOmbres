@@ -11,6 +11,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public float vitesseHorizontaleFPS = 2f;   //sensibilit� horizontale de la souris
     public float vitesseVerticaleFPS = 2f; //sensibilit� verticale de la souris
     public float rotationV;  // angle de rotation verticale total en degr� selon le mouvement vertical de la souris
+
     #endregion
     #region VariablelampeDePoche
     public Collider lumiereCol; //collider de la lampe de poche
@@ -25,10 +26,11 @@ public class DeplacementPersoScript : MonoBehaviour
     #region raycastFPS
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
+    bool mousquetonPossede;
+    public Text nbBarilUi;
     #endregion
 
     public float vitesseDeplacement; // vitesse du d�placement du personnage
-    public float hauteurSaut; // hauteur du saut du personnage
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
     int nombreDeBaril;
@@ -102,7 +104,12 @@ public class DeplacementPersoScript : MonoBehaviour
                 {
                     nombreDeBaril += 1;
                     Destroy(infoObjets.collider.gameObject);
-                    print(nombreDeBaril);
+                    nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
+                }
+                if(infoObjets.collider.tag == "mousqueton")
+                {
+                    mousquetonPossede = true;
+                    Destroy(infoObjets.collider.gameObject);
                 }
             }
             

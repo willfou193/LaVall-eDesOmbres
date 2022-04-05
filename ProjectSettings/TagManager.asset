@@ -10,6 +10,7 @@ TagManager:
   - feuDeCamp
   - effetSable
   - gaz
+  - mousqueton
   layers:
   - Default
   - TransparentFX
