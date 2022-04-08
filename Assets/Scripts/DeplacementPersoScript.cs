@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
@@ -27,16 +28,24 @@ public class DeplacementPersoScript : MonoBehaviour
     public GameObject raycastFPS; // objet source du raycast
     public float distanceActivableLoin; // distance maximale d'activation avec le raycast
     bool mousquetonPossede;
+    public GameObject bancActivable;
     public Text nbBarilUi;
     #endregion
-
-    public float vitesseDeplacement; // vitesse du d�placement du personnage
-    Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
-    Rigidbody rigidbodyPerso; // rigidbody du personnage
-    int nombreDeBaril;
-
+    #region persoStats
     public static bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
+    public float vitesseDeplacement; // vitesse du d�placement du personnage
+    bool enMarche = false;
+    Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
+    Rigidbody rigidbodyPerso; // rigidbody du personnage
+    public Animator joueurAnim;
+    #endregion
+    int nombreDeBaril;
+    #region audio
+    public AudioClip tyrolienne;
+    public AudioClip marcheSon;
+    #endregion
+    
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +85,12 @@ public class DeplacementPersoScript : MonoBehaviour
             float hDeplacementFPS = Input.GetAxis("Horizontal") * vitesseDeplacement;
 
             GetComponent<Rigidbody>().velocity = transform.forward * vDeplacementFPS + transform.right * hDeplacementFPS + new Vector3(0, rigidbodyPerso.velocity.y, 0);
-
+            if(vDeplacementFPS > 0){
+                enMarche = true;
+            }else{
+                enMarche = false;
+            }
+            print(enMarche);
             #endregion
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
@@ -110,9 +124,24 @@ public class DeplacementPersoScript : MonoBehaviour
                     mousquetonPossede = true;
                     Destroy(infoObjets.collider.gameObject);
                 }
+                if(infoObjets.collider.tag == "bancActivable" && mousquetonPossede){
+                    bancActivable.SetActive(true);
+                }
+                if(infoObjets.collider.name == "outilSurTyrolienne"){
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(tyrolienne);
+                    joueurAnim.enabled = true;
+                    joueurAnim.SetBool("activeTyro", true);
+                    bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
+                    Invoke("LacherTyro",10f);
+                }
             }
-            
             #endregion
+            if(santeMentale.sanite <0.1f){
+                joueurAnim.enabled = true;
+                joueurAnim.SetBool("joueurMort",true);
+                Invoke("ReloadScene",5.6f);
+                mort = true;
+            }
         }
     }
     void FermerLampeUv()
@@ -133,6 +162,14 @@ public class DeplacementPersoScript : MonoBehaviour
             chargeLampe += 1;
             MiseAJourLampe();
         }
+    }
+    void LacherTyro(){
+        joueurAnim.SetBool("activeTyro",false);
+        joueurAnim.enabled = false;
+    }
+    void ReloadScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        print("je relance la scene");
     }
 
     void MiseAJourLampe() // Switch case en fonction du nombre de charge
