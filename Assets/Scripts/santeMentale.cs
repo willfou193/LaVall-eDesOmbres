@@ -49,7 +49,7 @@ public class santeMentale : MonoBehaviour
             if(objectTouchee.gameObject.tag =="effetSable")
             {
 
-                print("Je touche une zone de sable!");
+                //print("Je touche une zone de sable!");
                 objectTouchee.gameObject.SetActive(true);
             }
         }
