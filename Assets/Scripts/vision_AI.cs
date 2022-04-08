@@ -31,6 +31,7 @@ public class vision_AI : MonoBehaviour {
     void ReinitialisationChasse()
     {
         AI.GetComponent<Ai_script>().enChasse = false;
+        //mettre une bool qui active la possibilite de crier
         AI.GetComponent<Ai_script>().AllerAuProchainPoint();
     }
 }
