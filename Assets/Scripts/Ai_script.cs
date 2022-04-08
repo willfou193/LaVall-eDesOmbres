@@ -12,6 +12,10 @@ public class Ai_script : MonoBehaviour
     
     public float tempsInvulnerable;
     public AudioClip criMonstre;
+    public AudioClip chasse1;
+    public AudioClip chasse2;
+    public AudioClip chasse3;
+    public AudioClip chasse4;
 
     public NavMeshAgent navAgent; //réfère au navMeshAgent
     public Transform[] waypoints; //Tableau des waypoints
@@ -35,11 +39,14 @@ public class Ai_script : MonoBehaviour
         Physics.Linecast(transform.position, joueur.transform.position, out lien);
         if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
+            
             if(peutCrier)
             {
                 gameObject.GetComponent<AudioSource>().PlayOneShot(criMonstre);
+                gameObject.GetComponent<AudioSource>().PlayOneShot(chasse1);
+                gameObject.GetComponent<AudioSource>().loop = true;
                 peutCrier = false;
-                Invoke("resetCrier", 10f);
+                Invoke("resetCrier", 20f);
             }
         }
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision

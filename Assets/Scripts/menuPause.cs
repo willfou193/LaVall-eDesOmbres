@@ -15,6 +15,7 @@ public class menuPause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
             if (JeuPause)
             {
                 Continuer();
