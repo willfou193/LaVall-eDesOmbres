@@ -37,7 +37,9 @@ public class menuPause : MonoBehaviour
     void Pause()
     {
         menuPauseUI.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+        // prevents the camera from moving with the mouse
+        Cursor.lockState = CursorLockMode.None;
         JeuPause = true;
     }
 

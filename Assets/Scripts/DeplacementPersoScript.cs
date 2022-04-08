@@ -64,10 +64,10 @@ public class DeplacementPersoScript : MonoBehaviour
 
 
 
-        if (!mort)
+        if (!mort && !menuPause.JeuPause)
         {
             #region deplacement
-
+            
             float rotationH = Input.GetAxis("Mouse X") * vitesseHorizontaleFPS;
             transform.Rotate(0, rotationH, 0);
 
