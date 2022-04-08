@@ -32,12 +32,14 @@ public class menuPause : MonoBehaviour
         menuPauseUI.SetActive(false);
         Time.timeScale = 1f;
         JeuPause = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Pause()
     {
         menuPauseUI.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
+        
         JeuPause = true;
     }
 
