@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class DeplacementPersoScript : MonoBehaviour
     bool mousquetonPossede;
     public GameObject bancActivable;
     public Text nbBarilUi;
+    public bool tyroTrouvee = false;
+    public TMP_Text bancActivableText;
+    public TMP_Text bancRamassableText;
     #endregion
     #region persoStats
     public static bool mort; // savoir si le personnage est mort ou vivant
@@ -90,7 +94,7 @@ public class DeplacementPersoScript : MonoBehaviour
             }else{
                 enMarche = false;
             }
-            print(enMarche);
+            //print(enMarche);
             #endregion
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
@@ -119,10 +123,11 @@ public class DeplacementPersoScript : MonoBehaviour
                     Destroy(infoObjets.collider.gameObject);
                     nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
                 }
-                if(infoObjets.collider.tag == "mousqueton")
+                if(infoObjets.collider.tag == "mousqueton" && tyroTrouvee == true)
                 {
                     mousquetonPossede = true;
                     Destroy(infoObjets.collider.gameObject);
+                    bancActivableText.GetComponent<TMP_Text>().text = "Appuyez sur E si vous avez l'outil de tyrolienne";
                 }
                 if(infoObjets.collider.tag == "bancActivable" && mousquetonPossede){
                     bancActivable.SetActive(true);
@@ -132,7 +137,7 @@ public class DeplacementPersoScript : MonoBehaviour
                     joueurAnim.enabled = true;
                     joueurAnim.SetBool("activeTyro", true);
                     bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
-                    Invoke("LacherTyro",10f);
+                    Invoke("LacherTyro",11f);
                 }
             }
             #endregion
@@ -153,7 +158,15 @@ public class DeplacementPersoScript : MonoBehaviour
             lampeUV.enabled = false;
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "bancActivable")
+        {
+            print("changement de texte");
+            bancRamassableText.GetComponent<TMP_Text>().text = "Appuyez sur E pour ramasser l'outil de tyrolienne";
+            tyroTrouvee = true;
+        }      
+    }
     // redonne une charge de la lampe à chaque X secondes 
     void RedonnerChargeLampe()
     {
@@ -197,5 +210,9 @@ public class DeplacementPersoScript : MonoBehaviour
                 charge3.enabled = false;
                 return;
         }
+    }
+    public void FinNiveau1()
+    {
+        SceneManager.LoadScene(0);
     }
 }
