@@ -15,7 +15,7 @@ public class menuPause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.None;//unlock la souris quand on press la touch echapper
             if (JeuPause)
             {
                 Continuer();
@@ -27,25 +27,25 @@ public class menuPause : MonoBehaviour
         } 
     }
 
-    public void Continuer()
+    public void Continuer()//public pour continuer la partie
     {
         menuPauseUI.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f;//faire dérouller la partie a temps normale
         JeuPause = false;
+        Cursor.lockState = CursorLockMode.Locked;//barré la souris quand on touch échapper
     }
 
-    void Pause()
+    void Pause()//public pour arreter la partie
     {
         menuPauseUI.SetActive(true);
         //Time.timeScale = 0f;
-        // prevents the camera from moving with the mouse
-        Cursor.lockState = CursorLockMode.None;
+        
         JeuPause = true;
     }
 
-    public void Quitter()
+    public void Quitter()//quand click sur le btn quitter ,rapporter le joueur au menu principale
     {
-        Debug.Log("au menu");
+        Debug.Log("au menu");//debug pour voir si le btn marche dans unity
         SceneManager.LoadScene(0);
     }
 }
