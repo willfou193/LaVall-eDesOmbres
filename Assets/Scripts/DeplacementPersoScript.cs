@@ -36,7 +36,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public TMP_Text bancRamassableText;
     #endregion
     #region persoStats
-    public static bool mort; // savoir si le personnage est mort ou vivant
+    public bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
     public float vitesseDeplacement; // vitesse du d�placement du personnage
     bool enMarche = false;
@@ -141,7 +141,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 }
             }
             #endregion
-            if(santeMentale.sanite <0.1f){
+            if(gameObject.GetComponent<santeMentale>().sanite <0.1f){
                 joueurAnim.enabled = true;
                 joueurAnim.SetBool("joueurMort",true);
                 Invoke("ReloadScene",5.6f);
@@ -181,8 +181,7 @@ public class DeplacementPersoScript : MonoBehaviour
         joueurAnim.enabled = false;
     }
     void ReloadScene(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        print("je relance la scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //on relance la scène
     }
 
     void MiseAJourLampe() // Switch case en fonction du nombre de charge
@@ -214,5 +213,6 @@ public class DeplacementPersoScript : MonoBehaviour
     public void FinNiveau1()
     {
         SceneManager.LoadScene(0);
+        Cursor.lockState = CursorLockMode.None;
     }
 }
