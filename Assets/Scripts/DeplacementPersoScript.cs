@@ -148,7 +148,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 mort = true;
             }
         }
-    }
+    } // fin du update
     void FermerLampeUv()
     {
         if(lampeUvAllumee == true)
