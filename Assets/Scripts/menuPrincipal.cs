@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class menuPrincipal : MonoBehaviour
 {
-    public void Jouer()
+    public void Jouer()//void pour load scene de jeu quand on click sur jouer
     {
         SceneManager.LoadScene(1);
     }
 
-    public void quitter()
+    public void quitter()//void pour quitter le jeu entirement 
     {
         Debug.Log("quitter");
         Application.Quit();
