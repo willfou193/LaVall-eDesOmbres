@@ -13,7 +13,7 @@ public class santeMentale : MonoBehaviour
     // le nombre inscrit a tendance à rapprocher les dégats à MAX distance de ce nombre. EX: 4f = 4 degats/s si la distance est 20m
     public float degatMaxDistance;
     public float regenerationSanteMentale; // vitesse auquel le feu redonner de la sante mentale
-    public static float sanite = 100f; // santé mentale
+    public float sanite = 100f; // santé mentale
     float santeMentaleMax = 100f; // maximum que les feux de camps ne peuvent pas dépassé
     public Volume volume; //réfère au Volume post-processing
     public Vignette _Vignette; // Post-processing vignettage

@@ -11,7 +11,6 @@ public class Ai_script : MonoBehaviour
     public GameObject joueur; // réfère au joueur
     
     public float tempsInvulnerable;
-    public AudioClip criMonstre;
     public AudioClip chasse1;
     public AudioClip chasse2;
     public AudioClip chasse3;
@@ -23,7 +22,6 @@ public class Ai_script : MonoBehaviour
   
     public bool enChasse = false; // indique si le monstre poursuit le joueur
     public bool invulnerableEtourdi = false; // indique si le monstre peut être étourdi de nouveau
-    bool peutCrier = true;
 
 
     void Start()
@@ -40,14 +38,6 @@ public class Ai_script : MonoBehaviour
         if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
             
-            if(peutCrier)
-            {
-                gameObject.GetComponent<AudioSource>().PlayOneShot(criMonstre);
-                gameObject.GetComponent<AudioSource>().PlayOneShot(chasse1);
-                gameObject.GetComponent<AudioSource>().loop = true;
-                peutCrier = false;
-                Invoke("resetCrier", 20f);
-            }
         }
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
             Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
@@ -72,9 +62,6 @@ public class Ai_script : MonoBehaviour
     public void LeMonstreCourt()
     {
        navAgent.speed = 3f;
-    }
-    void resetCrier(){
-        peutCrier = true;
     }
     private void OnTriggerEnter(Collider InfoCol) {
         if(InfoCol.gameObject.tag == "waypoint"){ //si le monstre touche un waypoint
