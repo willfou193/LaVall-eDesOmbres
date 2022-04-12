@@ -8,13 +8,20 @@ public class vision_AI : MonoBehaviour {
     // avant qu'il retourne sur son chemain de base.
     public GameObject AI; // référence au monstre
     public int tempsReset = 5; // temps avant que le monstre retourne sur son chemain
-    
+    bool peutCrier = true;
+    public AudioClip criMonstre;
+
     //lorsque que le monstre détecte le joueur, il est en chasse continuellement.
     private void OnTriggerStay(Collider InfoCol)
     {
         if(InfoCol.gameObject.tag == "Player")
         {
+            if (peutCrier)
+            {
+                gameObject.GetComponent<AudioSource>().PlayOneShot(criMonstre);
+            }
             AI.GetComponent<Ai_script>().enChasse = true; // retourne la variable enChasse a true dans le script Ai_script
+            peutCrier = false;
             CancelInvoke("ReinitialisationChasse"); //rafraîchit le temps avant que le monstre retourne sur son chemain
         }
     }
@@ -31,7 +38,7 @@ public class vision_AI : MonoBehaviour {
     void ReinitialisationChasse()
     {
         AI.GetComponent<Ai_script>().enChasse = false;
-        //mettre une bool qui active la possibilite de crier
+        peutCrier = true;
         AI.GetComponent<Ai_script>().AllerAuProchainPoint();
     }
 }
