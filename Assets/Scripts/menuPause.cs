@@ -30,9 +30,10 @@ public class menuPause : MonoBehaviour
     public void Continuer()//public pour continuer la partie
     {
         menuPauseUI.SetActive(false);
-        Time.timeScale = 1f;//faire dérouller la partie a temps normale
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;//faire dï¿½rouller la partie a temps normale
         JeuPause = false;
-        Cursor.lockState = CursorLockMode.Locked;//barré la souris quand on touch échapper
+        Cursor.lockState = CursorLockMode.Locked;//barrï¿½ la souris quand on touch ï¿½chapper
     }
 
     void Pause()//public pour arreter la partie
