@@ -39,6 +39,9 @@ public class DeplacementPersoScript : MonoBehaviour
     public bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
     public float vitesseDeplacement; // vitesse du d�placement du personnage
+    float jaugeDeSprint = 8f;
+    public float jaugeDeSprintMax = 8f;
+    bool enCourse = false;
     bool enMarche = false;
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
@@ -65,10 +68,6 @@ public class DeplacementPersoScript : MonoBehaviour
     void Update()
     {
         RaycastHit infoObjets;
-        
-
-
-
         if (!mort && !menuPause.JeuPause)
         {
             #region deplacement
@@ -95,7 +94,25 @@ public class DeplacementPersoScript : MonoBehaviour
             }else{
                 enMarche = false;
             }
-            //print(enMarche);
+
+            //Section course du joueur
+            #region Course
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                enCourse = true;
+                if(jaugeDeSprint > 0f)
+                {
+                    GetComponent<Rigidbody>().velocity += new Vector3(1, 1, 1);
+                    jaugeDeSprint -= 1 * Time.deltaTime;
+                }
+            }
+            else { enCourse = false; }
+            if(jaugeDeSprint < jaugeDeSprintMax && !enCourse)
+            {
+                jaugeDeSprint += 1 * Time.deltaTime;
+            }
+            print(jaugeDeSprint);
+            #endregion
             #endregion
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
@@ -154,6 +171,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 Invoke("ReloadScene",5.6f);
                 mort = true;
             }
+
         }
     } // fin du update
     void FermerLampeUv()
