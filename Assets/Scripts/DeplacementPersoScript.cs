@@ -44,12 +44,13 @@ public class DeplacementPersoScript : MonoBehaviour
     Rigidbody rigidbodyPerso; // rigidbody du personnage
     public Animator joueurAnim;
     #endregion
-    int nombreDeBaril;
     #region audio
     public AudioClip tyrolienne;
     public AudioClip marcheSon;
     #endregion
-    
+    int nombreDeBaril;
+    public GameObject numPad;
+
 
     // Start is called before the first frame update
     void Start()
@@ -138,6 +139,13 @@ public class DeplacementPersoScript : MonoBehaviour
                     joueurAnim.SetBool("activeTyro", true);
                     bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
                     Invoke("LacherTyro",11f);
+                }
+                if (infoObjets.collider.name == "numpad")
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    numPad.SetActive(true);
+
+
                 }
             }
             #endregion
