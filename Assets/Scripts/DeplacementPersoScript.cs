@@ -39,17 +39,21 @@ public class DeplacementPersoScript : MonoBehaviour
     public bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
     public float vitesseDeplacement; // vitesse du d�placement du personnage
+    float jaugeDeSprint = 8f;
+    public float jaugeDeSprintMax = 8f;
+    bool enCourse = false;
     bool enMarche = false;
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
     public Animator joueurAnim;
     #endregion
-    int nombreDeBaril;
     #region audio
     public AudioClip tyrolienne;
     public AudioClip marcheSon;
     #endregion
-    
+    int nombreDeBaril;
+    public GameObject numPad;
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,10 +68,6 @@ public class DeplacementPersoScript : MonoBehaviour
     void Update()
     {
         RaycastHit infoObjets;
-        
-
-
-
         if (!mort && !menuPause.JeuPause)
         {
             #region deplacement
@@ -94,7 +94,27 @@ public class DeplacementPersoScript : MonoBehaviour
             }else{
                 enMarche = false;
             }
-            //print(enMarche);
+
+            //Section course du joueur
+            #region Course
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                enCourse = true;
+                if(jaugeDeSprint > 0f)
+                {
+                    GetComponent<Rigidbody>().velocity += new Vector3(3, 0, 3);
+                    jaugeDeSprint -= 1 * Time.deltaTime;
+                    cameraFPS.GetComponent<Camera>().fieldOfView = 65f;
+                }
+            }
+            else { enCourse = false; }
+            if(jaugeDeSprint < jaugeDeSprintMax && !enCourse)
+            {
+                cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
+                jaugeDeSprint += 1 * Time.deltaTime;
+            }
+            print(jaugeDeSprint);
+            #endregion
             #endregion
             #region lampeDePoche
             // On allumer / ferme le collider et la lumière de la lampe de poche en fonction de son �tat
@@ -139,6 +159,12 @@ public class DeplacementPersoScript : MonoBehaviour
                     bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
                     Invoke("LacherTyro",11f);
                 }
+                if (infoObjets.collider.name == "numpad")
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    numPad.SetActive(true);
+                    menuPause.JeuPause = true;
+                }
             }
             #endregion
             if(gameObject.GetComponent<santeMentale>().sanite <0.1f){
@@ -147,6 +173,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 Invoke("ReloadScene",5.6f);
                 mort = true;
             }
+
         }
     } // fin du update
     void FermerLampeUv()

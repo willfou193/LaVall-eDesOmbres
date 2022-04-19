@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using System.Linq;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Experimental.Rendering.Universal;
 public class santeMentale : MonoBehaviour
@@ -12,6 +13,7 @@ public class santeMentale : MonoBehaviour
     public float degatMinDistance; 
     // le nombre inscrit a tendance à rapprocher les dégats à MAX distance de ce nombre. EX: 4f = 4 degats/s si la distance est 20m
     public float degatMaxDistance;
+    float distancePlusProche;
     public float regenerationSanteMentale; // vitesse auquel le feu redonner de la sante mentale
     public float sanite = 100f; // santé mentale
     float santeMentaleMax = 100f; // maximum que les feux de camps ne peuvent pas dépassé
@@ -19,6 +21,14 @@ public class santeMentale : MonoBehaviour
     public Vignette _Vignette; // Post-processing vignettage
     public FilmGrain _Grain; // Post-processing vignettage
     public Text santeMentaleUi;
+    //Son de toutes les musiques de chasse
+    public AudioSource audio;
+    public AudioClip chasse1;
+    public AudioClip chasse2;
+    public AudioClip chasse3;
+    public AudioClip chasse4;
+    public bool sonChassePeutJoue = true;
+
 
     public void Start() {
         volume.profile.TryGet<Vignette>(out _Vignette);
@@ -28,7 +38,10 @@ public class santeMentale : MonoBehaviour
     }
 
     void Update()
-    {   //créer un cercle autour du joueur et créer un tableau de collider de ce qu'il touche
+    {   
+        float distanceEnnemiPlusProche = Mathf.Infinity; // distance "de base"
+        Collider ennemiPlusProche = null;
+        //créer un cercle autour du joueur et créer un tableau de collider de ce qu'il touche
         Collider[] objectsDansCercle = Physics.OverlapSphere(gameObject.transform.position, rayonCol); 
         foreach (var objectTouchee in objectsDansCercle) // pour chaque object dans le cercle 
         {
@@ -39,11 +52,42 @@ public class santeMentale : MonoBehaviour
                 if(!(lien.transform.tag == "terrain")) // s'il n'y a pas de terrain entre nous,
                 {
                     float distance = Vector3.Distance(objectTouchee.transform.position, transform.position); // renvoie la distance entre moi et les monstres
+                    if(distance < distanceEnnemiPlusProche){
+                        distanceEnnemiPlusProche = distance;
+                        ennemiPlusProche = objectTouchee;
+                        if(ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true && sonChassePeutJoue){
+                            sonChassePeutJoue = false;
+                            if(distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol/4 * 3 ){//le 1/4 le plus loin
+                                audio.Stop();
+                                audio.loop = true;
+                                audio.clip = chasse1;
+                                audio.Play();
+                            }
+                            if(distanceEnnemiPlusProche <  rayonCol/4 * 3 && distanceEnnemiPlusProche > rayonCol/4 * 2){// le 2/4 le plus loin
+                                audio.Stop();
+                                audio.loop = true;
+                                audio.clip = chasse2;
+                                audio.Play();
+                                
+                            }
+                            if(distanceEnnemiPlusProche < rayonCol/4 * 2 && distanceEnnemiPlusProche >rayonCol/4 * 1){// le 2/4 le plus proche
+                                audio.Stop();
+                                audio.loop = true;
+                                audio.clip = chasse3;
+                                audio.Play();
+                            }
+                            if(distanceEnnemiPlusProche < rayonCol/4  && distanceEnnemiPlusProche > 0.1f){// le 1/4 le plus proche
+                                audio.Stop();
+                                audio.loop = true;
+                                audio.clip = chasse4;
+                                audio.Play();
+                            }
+                        }
+                    }
                     if(sanite >= 0f){ // si la santé mentale n'est pas à 0
                         //La santé mentale diminue selon une fonction voir ici: https://www.desmos.com/calculator/2jjemrx9vn?lang=fr
-                        sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
+                        //sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
                     }
-                    //print(distance + "Mètre est la distance et la santé mentale est de " + sanite);
                 }
             }
             if(objectTouchee.gameObject.tag =="effetSable")
@@ -53,6 +97,11 @@ public class santeMentale : MonoBehaviour
                 objectTouchee.gameObject.SetActive(true);
             }
         }
+        
+        
+
+
+
         _Vignette.intensity.value = -0.008f * sanite + 0.8f; // renvoie le niveau de la santé mentale l'intensité voulu max
         _Grain.intensity.value = -0.01f * sanite + 1f; // renvoie le niveau de la santé mentale l'intensité voulu max
         santeMentaleUi.text = Mathf.RoundToInt(sanite).ToString() + "%"; //On affiche la sante mentale en texte

@@ -9,13 +9,7 @@ public class Ai_script : MonoBehaviour
     // dans son champs de vision, il le poursuit. S'il disparait pour
     // plus de X secondes, il revient sur son chemain.
     public GameObject joueur; // réfère au joueur
-    
     public float tempsInvulnerable;
-    public AudioClip chasse1;
-    public AudioClip chasse2;
-    public AudioClip chasse3;
-    public AudioClip chasse4;
-
     public NavMeshAgent navAgent; //réfère au navMeshAgent
     public Transform[] waypoints; //Tableau des waypoints
     int numWaypoint = 0; //index
@@ -37,7 +31,6 @@ public class Ai_script : MonoBehaviour
         Physics.Linecast(transform.position, joueur.transform.position, out lien);
         if(enChasse && !(lien.transform.tag =="terrain")){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
-            
         }
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
             Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
