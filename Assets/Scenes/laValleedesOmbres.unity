@@ -60561,6 +60561,10 @@ PrefabInstance:
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
+      propertyPath: joueur
+      value: 
+      objectReference: {fileID: 661732028}
+    - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: criMonstre
       value: 
       objectReference: {fileID: 8300000, guid: 654f4d55a5789d740b801847a3b51a55, type: 3}
@@ -74874,6 +74878,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[5]
       value: 
       objectReference: {fileID: 814911495}
+    - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
+      propertyPath: joueur
+      value: 
+      objectReference: {fileID: 661732028}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: criMonstre
       value: 
@@ -134656,20 +134664,24 @@ PrefabInstance:
       value: 3.4980397
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.277397
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_LocalScale.z
       value: 3.4980397
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 477.7
+      value: 484.3
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 104.77
+      value: 104.87
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 112.3
+      value: 45.8
       objectReference: {fileID: 0}
     - target: {fileID: 3089295755384706147, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -134728,6 +134740,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 666731674}
     - target: {fileID: 3089295755384706159, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: jaugeDeSprintMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089295755384706159, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: bancActivableText
       value: 
       objectReference: {fileID: 699209819}
@@ -134735,6 +134751,10 @@ PrefabInstance:
       propertyPath: bancRamassableText
       value: 
       objectReference: {fileID: 1345476806}
+    - target: {fileID: 3089295755384706159, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
+      propertyPath: vitesseDeplacement
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3294253129946045434, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
       propertyPath: m_Intensity
       value: 1200

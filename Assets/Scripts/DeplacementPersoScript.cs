@@ -39,9 +39,9 @@ public class DeplacementPersoScript : MonoBehaviour
     public bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
     public float vitesseDeplacement; // vitesse du d�placement du personnage
-    float jaugeDeSprint = 8f;
-    public float jaugeDeSprintMax = 8f;
-    bool enCourse = false;
+    float jaugeDeSprint = 6f;
+    public float jaugeDeSprintMax = 6f;
+    bool peutRegagnerEndurance = true;
     bool enMarche = false;
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
@@ -99,21 +99,34 @@ public class DeplacementPersoScript : MonoBehaviour
             #region Course
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                enCourse = true;
                 if(jaugeDeSprint > 0f)
                 {
-                    GetComponent<Rigidbody>().velocity += new Vector3(3, 0, 3);
+                    print("je cours");
+                    peutRegagnerEndurance = false;
+                    vitesseDeplacement = 25;
                     jaugeDeSprint -= 1 * Time.deltaTime;
                     cameraFPS.GetComponent<Camera>().fieldOfView = 65f;
+                    CancelInvoke("RegainDenergie");
+                }
+                else
+                {
+                    Invoke("RegainDenergie", 2f);
+                    vitesseDeplacement = 20;
+                    cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
                 }
             }
-            else { enCourse = false; }
-            if(jaugeDeSprint < jaugeDeSprintMax && !enCourse)
-            {
+            else {
+                Invoke("RegainDenergie", 2f);
+                vitesseDeplacement = 20;
                 cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
+            }
+            if(jaugeDeSprint < jaugeDeSprintMax && peutRegagnerEndurance)
+            {
+                print("je cours pas");
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
-            print(jaugeDeSprint);
+            print(Mathf.RoundToInt(jaugeDeSprint));
+            print(peutRegagnerEndurance);
             #endregion
             #endregion
             #region lampeDePoche
@@ -236,6 +249,10 @@ public class DeplacementPersoScript : MonoBehaviour
                 charge3.enabled = false;
                 return;
         }
+    }
+    void RegainDenergie()
+    {
+        peutRegagnerEndurance = true;
     }
     public void FinNiveau1()
     {
