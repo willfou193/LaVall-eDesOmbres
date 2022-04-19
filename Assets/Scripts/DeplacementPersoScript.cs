@@ -144,8 +144,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 {
                     Cursor.lockState = CursorLockMode.None;
                     numPad.SetActive(true);
-
-
+                    menuPause.JeuPause = true;
                 }
             }
             #endregion

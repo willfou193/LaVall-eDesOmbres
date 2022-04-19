@@ -13,7 +13,18 @@ public class NumPad : MonoBehaviour
     public string bonneReponse;
     int nombreDeNumMax = 4;
     public Text codeText;
+    public GameObject numpad;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
+        {
+            print("Je ferme le menu");
+            numpad.SetActive(false); 
+            menuPause.JeuPause = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
     private void Start()
     {
         //bonneReponse = Random.Range(0,9).ToString();
