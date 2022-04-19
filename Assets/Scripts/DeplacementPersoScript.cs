@@ -102,13 +102,15 @@ public class DeplacementPersoScript : MonoBehaviour
                 enCourse = true;
                 if(jaugeDeSprint > 0f)
                 {
-                    GetComponent<Rigidbody>().velocity += new Vector3(1, 1, 1);
+                    GetComponent<Rigidbody>().velocity += new Vector3(3, 0, 3);
                     jaugeDeSprint -= 1 * Time.deltaTime;
+                    cameraFPS.GetComponent<Camera>().fieldOfView = 65f;
                 }
             }
             else { enCourse = false; }
             if(jaugeDeSprint < jaugeDeSprintMax && !enCourse)
             {
+                cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
             print(jaugeDeSprint);
