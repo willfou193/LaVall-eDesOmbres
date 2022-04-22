@@ -36,7 +36,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public TMP_Text bancRamassableText;
     #endregion
     #region persoStats
-    public bool mort; // savoir si le personnage est mort ou vivant
+    public static bool mort; // savoir si le personnage est mort ou vivant
     public Vector3 posCheckpointActif; // position du checkpoint pr�sentemment actif
     public float vitesseDeplacement; // vitesse du d�placement du personnage
     float jaugeDeSprint = 6f;
@@ -51,13 +51,20 @@ public class DeplacementPersoScript : MonoBehaviour
     public AudioClip tyrolienne;
     public AudioClip marcheSon;
     #endregion
+    #region UI
     int nombreDeBaril;
+    public GameObject baril1;
+    public GameObject baril2;
+    public GameObject baril3;
     public GameObject numPad;
-
+    #endregion
+    public GameObject[] ennemis;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        mort = false;
+        ennemis = GameObject.FindGameObjectsWithTag("monstre");
         rigidbodyPerso = GetComponent<Rigidbody>();
         lumiereCol.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -101,7 +108,6 @@ public class DeplacementPersoScript : MonoBehaviour
             {
                 if(jaugeDeSprint > 0f)
                 {
-                    print("je cours");
                     peutRegagnerEndurance = false;
                     vitesseDeplacement = 25;
                     jaugeDeSprint -= 1 * Time.deltaTime;
@@ -122,11 +128,8 @@ public class DeplacementPersoScript : MonoBehaviour
             }
             if(jaugeDeSprint < jaugeDeSprintMax && peutRegagnerEndurance)
             {
-                print("je cours pas");
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
-            print(Mathf.RoundToInt(jaugeDeSprint));
-            print(peutRegagnerEndurance);
             #endregion
             #endregion
             #region lampeDePoche
@@ -154,7 +157,24 @@ public class DeplacementPersoScript : MonoBehaviour
                 {
                     nombreDeBaril += 1;
                     Destroy(infoObjets.collider.gameObject);
-                    nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
+                    //nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
+                    switch (nombreDeBaril)
+                    {
+                        case 1:
+                            baril1.SetActive(true);
+                            return;
+                        case 2:
+                            baril2.SetActive(true);
+                            return;
+                        case 3:
+                            baril3.SetActive(true);
+                            return;
+                        default: 
+                            baril1.SetActive(false);
+                            baril2.SetActive(false);
+                            baril3.SetActive(false);
+                            return;
+                    }
                 }
                 if(infoObjets.collider.tag == "mousqueton" && tyroTrouvee == true)
                 {
@@ -178,9 +198,18 @@ public class DeplacementPersoScript : MonoBehaviour
                     numPad.SetActive(true);
                     menuPause.JeuPause = true;
                 }
+                if (infoObjets.collider.tag == "generatrice" && nombreDeBaril == 3)
+                {
+                    infoObjets.collider.gameObject.GetComponent<barriere>().OuvrirPorte();  
+                }
             }
             #endregion
             if(gameObject.GetComponent<santeMentale>().sanite <0.1f){
+                foreach(GameObject ennemi in ennemis)
+                {
+                    print(ennemi.gameObject.name);
+                    ennemi.GetComponent<Ai_script>().AllerAuProchainPoint();
+                }
                 joueurAnim.enabled = true;
                 joueurAnim.SetBool("joueurMort",true);
                 Invoke("ReloadScene",5.6f);

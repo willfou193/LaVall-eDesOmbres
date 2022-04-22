@@ -86,7 +86,7 @@ public class santeMentale : MonoBehaviour
                     }
                     if(sanite >= 0f){ // si la santé mentale n'est pas à 0
                         //La santé mentale diminue selon une fonction voir ici: https://www.desmos.com/calculator/2jjemrx9vn?lang=fr
-                        //sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
+                        sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
                     }
                 }
             }
