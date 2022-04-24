@@ -29,12 +29,13 @@ public class Ai_script : MonoBehaviour
         // renvoie lien si un object se trouve entre le joueur et le monstre
         RaycastHit lien;
         Physics.Linecast(transform.position, joueur.transform.position, out lien);
-        if(enChasse && !(lien.transform.tag =="terrain")){
+        if(enChasse && lien.transform.tag !="terrain"){
             navAgent.SetDestination(joueur.transform.position); //poursuit le joueur
         }
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
             Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
         }
+        print("Moi " + gameObject.name + "je cours après " + navAgent.destination);
     } // Fin du Update
 
 

@@ -55,38 +55,38 @@ public class santeMentale : MonoBehaviour
                     if(distance < distanceEnnemiPlusProche){
                         distanceEnnemiPlusProche = distance;
                         ennemiPlusProche = objectTouchee;
-                        if(ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true && sonChassePeutJoue){
-                            sonChassePeutJoue = false;
-                            if(distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol/4 * 3 ){//le 1/4 le plus loin
+                        if(ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true){
+                            audio.loop = true;
+                            print("Je recherche quoi jouer");
+                            if(distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol/4 * 3 && !audio.clip == chasse1){//le 1/4 le plus loin
                                 audio.Stop();
-                                audio.loop = true;
                                 audio.clip = chasse1;
                                 audio.Play();
                             }
-                            if(distanceEnnemiPlusProche <  rayonCol/4 * 3 && distanceEnnemiPlusProche > rayonCol/4 * 2){// le 2/4 le plus loin
+                            if(distanceEnnemiPlusProche <  rayonCol/4 * 3 && distanceEnnemiPlusProche > rayonCol/4 * 2 && !audio.clip == chasse2){// le 2/4 le plus loin
                                 audio.Stop();
-                                audio.loop = true;
                                 audio.clip = chasse2;
                                 audio.Play();
                                 
                             }
-                            if(distanceEnnemiPlusProche < rayonCol/4 * 2 && distanceEnnemiPlusProche >rayonCol/4 * 1){// le 2/4 le plus proche
+                            if(distanceEnnemiPlusProche < rayonCol/4 * 2 && distanceEnnemiPlusProche >rayonCol/4 * 1 &&!audio.clip == chasse3){// le 2/4 le plus proche
                                 audio.Stop();
-                                audio.loop = true;
                                 audio.clip = chasse3;
                                 audio.Play();
                             }
-                            if(distanceEnnemiPlusProche < rayonCol/4  && distanceEnnemiPlusProche > 0.1f){// le 1/4 le plus proche
+                            if(distanceEnnemiPlusProche < rayonCol/4  && distanceEnnemiPlusProche > 0.1f && !audio.clip == chasse4){// le 1/4 le plus proche
                                 audio.Stop();
-                                audio.loop = true;
                                 audio.clip = chasse4;
                                 audio.Play();
                             }
                         }
+                        else{
+                            audio.loop = false;
+                        }
                     }
                     if(sanite >= 0f){ // si la santé mentale n'est pas à 0
                         //La santé mentale diminue selon une fonction voir ici: https://www.desmos.com/calculator/2jjemrx9vn?lang=fr
-                        sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
+                        //sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
                     }
                 }
             }
