@@ -14,6 +14,7 @@ public class NumPad : MonoBehaviour
     int nombreDeNumMax = 4;
     public Text codeText;
     public GameObject numpad;
+    public GameObject monteCharge;
     private void Start()
     {
         //bonneReponse = Random.Range(0,9).ToString();
@@ -64,6 +65,7 @@ public class NumPad : MonoBehaviour
     {
         if(code == bonneReponse)
         {
+            monteCharge.GetComponent<MonteCharge>().MonterCharge();
             print("Fin du jeu");
             //activer la scin�matique
         }

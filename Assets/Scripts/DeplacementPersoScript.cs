@@ -50,6 +50,11 @@ public class DeplacementPersoScript : MonoBehaviour
     #region audio
     public AudioClip tyrolienne;
     public AudioClip marcheSon;
+    public AudioClip monteChargeSon;
+    public AudioClip lampeAllumeeSon;
+    public AudioClip lampeFermeeSon;
+    public AudioClip objetPrisSon;
+    public AudioClip notePapierSon;
     #endregion
     #region UI
     int nombreDeBaril;
@@ -141,6 +146,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 lampeUvAllumee = true;
                 lumiereCol.enabled = true;
                 lampeUV.enabled = true;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(lampeAllumeeSon);
                 MiseAJourLampe(); //appel la fonction de la mise a jour de la lampe
             }
             else if(Input.GetKeyDown(KeyCode.F) && lampeUvAllumee == true)
@@ -148,6 +154,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 lampeUvAllumee = false;
                 lumiereCol.enabled = false;
                 lampeUV.enabled = false;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(lampeFermeeSon);
             }
             #endregion
             #region interaction
@@ -180,6 +187,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 {
                     mousquetonPossede = true;
                     Destroy(infoObjets.collider.gameObject);
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(objetPrisSon);
                     bancActivableText.GetComponent<TMP_Text>().text = "Appuyez sur E si vous avez l'outil de tyrolienne";
                 }
                 if(infoObjets.collider.tag == "bancActivable" && mousquetonPossede){
@@ -200,7 +208,9 @@ public class DeplacementPersoScript : MonoBehaviour
                 }
                 if (infoObjets.collider.tag == "generatrice" && nombreDeBaril == 3)
                 {
-                    infoObjets.collider.gameObject.GetComponent<barriere>().OuvrirPorte();  
+                    infoObjets.collider.gameObject.GetComponent<barriere>().Invoke("OuvrirPorte",3f);
+                    infoObjets.collider.gameObject.GetComponent<barriere>().PartirGenerateur();
+
                 }
             }
             #endregion
@@ -225,6 +235,7 @@ public class DeplacementPersoScript : MonoBehaviour
             lampeUvAllumee = false;
             lumiereCol.enabled = false;
             lampeUV.enabled = false;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(lampeFermeeSon);
         }
     }
     private void OnTriggerEnter(Collider other)
