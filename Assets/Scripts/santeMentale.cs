@@ -23,6 +23,9 @@ public class santeMentale : MonoBehaviour
     public Text santeMentaleUi;
     //Son de toutes les musiques de chasse
     public AudioSource audio;
+    public AudioSource audio2;
+    public AudioSource audio3;
+    public AudioSource audio4;
     public AudioClip chasse1;
     public AudioClip chasse2;
     public AudioClip chasse3;
@@ -32,6 +35,8 @@ public class santeMentale : MonoBehaviour
     bool JoueChasse2;
     bool JoueChasse3;
     bool JoueChasse4;
+    //public AudioSource[] tableauChasse;
+    public AudioSource enCours;
 
 
     public void Start() {
@@ -61,43 +66,52 @@ public class santeMentale : MonoBehaviour
                         ennemiPlusProche = objectTouchee;
                         if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true) {
                             audio.loop = true;
+                            audio2.loop = true;
+                            audio3.loop = true;
+                            audio4.loop = true;
                             print("Je recherche quoi jouer");
                             if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol / 4 * 3 && !JoueChasse1) {//le 1/4 le plus loin
+                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = true;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
-                                audio.clip = chasse1;
-                                audio.Play();
                                 JoueChasse4 = false;
+                                audio.volume = 1;
+                                audio.Play();
+                                enCours = audio;
                                 print("zone 1 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 3 && distanceEnnemiPlusProche > rayonCol / 4 * 2 && !JoueChasse2) {// le 2/4 le plus loin
+                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = true;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
-                                audio.clip = chasse2;
                                 audio.Play();
+                                enCours = audio2;
                                 print("zone 2 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 2 && distanceEnnemiPlusProche > rayonCol / 4 * 1 && !JoueChasse3) {// le 2/4 le plus proche
+                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = true;
                                 JoueChasse4 = false;
-                                audio.clip = chasse3;
                                 audio.Play();
+                                enCours = audio3;
                                 print("zone 3 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4) {// le 1/4 le plus proche
+                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = true;
-                                audio.clip = chasse4;
                                 audio.Play();
+                                enCours = audio4;
                                 print("zone 4 activé");
                             }
+                            
                         }
                         else{
                             audio.loop = false;
