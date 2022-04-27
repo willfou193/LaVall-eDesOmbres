@@ -28,6 +28,10 @@ public class santeMentale : MonoBehaviour
     public AudioClip chasse3;
     public AudioClip chasse4;
     public bool sonChassePeutJoue = true;
+    bool JoueChasse1;
+    bool JoueChasse2;
+    bool JoueChasse3;
+    bool JoueChasse4;
 
 
     public void Start() {
@@ -55,29 +59,44 @@ public class santeMentale : MonoBehaviour
                     if(distance < distanceEnnemiPlusProche){
                         distanceEnnemiPlusProche = distance;
                         ennemiPlusProche = objectTouchee;
-                        if(ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true){
+                        if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true) {
                             audio.loop = true;
                             print("Je recherche quoi jouer");
-                            if(distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol/4 * 3 && !audio.clip == chasse1){//le 1/4 le plus loin
-                                audio.Stop();
+                            if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol / 4 * 3 && !JoueChasse1) {//le 1/4 le plus loin
+                                JoueChasse1 = true;
+                                JoueChasse2 = false;
+                                JoueChasse3 = false;
                                 audio.clip = chasse1;
                                 audio.Play();
+                                JoueChasse4 = false;
+                                print("zone 1 activé");
                             }
-                            if(distanceEnnemiPlusProche <  rayonCol/4 * 3 && distanceEnnemiPlusProche > rayonCol/4 * 2 && !audio.clip == chasse2){// le 2/4 le plus loin
-                                audio.Stop();
+                            if (distanceEnnemiPlusProche < rayonCol / 4 * 3 && distanceEnnemiPlusProche > rayonCol / 4 * 2 && !JoueChasse2) {// le 2/4 le plus loin
+                                JoueChasse1 = false;
+                                JoueChasse2 = true;
+                                JoueChasse3 = false;
+                                JoueChasse4 = false;
                                 audio.clip = chasse2;
                                 audio.Play();
-                                
+                                print("zone 2 activé");
                             }
-                            if(distanceEnnemiPlusProche < rayonCol/4 * 2 && distanceEnnemiPlusProche >rayonCol/4 * 1 &&!audio.clip == chasse3){// le 2/4 le plus proche
-                                audio.Stop();
+                            if (distanceEnnemiPlusProche < rayonCol / 4 * 2 && distanceEnnemiPlusProche > rayonCol / 4 * 1 && !JoueChasse3) {// le 2/4 le plus proche
+                                JoueChasse1 = false;
+                                JoueChasse2 = false;
+                                JoueChasse3 = true;
+                                JoueChasse4 = false;
                                 audio.clip = chasse3;
                                 audio.Play();
+                                print("zone 3 activé");
                             }
-                            if(distanceEnnemiPlusProche < rayonCol/4  && distanceEnnemiPlusProche > 0.1f && !audio.clip == chasse4){// le 1/4 le plus proche
-                                audio.Stop();
+                            if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4) {// le 1/4 le plus proche
+                                JoueChasse1 = false;
+                                JoueChasse2 = false;
+                                JoueChasse3 = false;
+                                JoueChasse4 = true;
                                 audio.clip = chasse4;
                                 audio.Play();
+                                print("zone 4 activé");
                             }
                         }
                         else{
@@ -123,3 +142,48 @@ public class santeMentale : MonoBehaviour
         }
     }
 }
+
+
+/*RaycastHit lien;
+Physics.Linecast(transform.position, objectTouchee.transform.position, out lien); // on trace une ligne entre moi et les monstres dans le cercle
+if (!(lien.transform.tag == "terrain")) // s'il n'y a pas de terrain entre nous,
+{
+    float distance = Vector3.Distance(objectTouchee.transform.position, transform.position); // renvoie la distance entre moi et les monstres
+    if (distance < distanceEnnemiPlusProche)
+    {
+        distanceEnnemiPlusProche = distance;
+        ennemiPlusProche = objectTouchee;
+        if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true)
+        {
+            audio.loop = true;
+            print("Je recherche quoi jouer");
+            if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol / 4 * 3 && !audio.clip == chasse1)
+            {//le 1/4 le plus loin
+                audio.Stop();
+                audio.clip = chasse1;
+                audio.Play();
+            }
+            if (distanceEnnemiPlusProche < rayonCol / 4 * 3 && distanceEnnemiPlusProche > rayonCol / 4 * 2 && !audio.clip == chasse2)
+            {// le 2/4 le plus loin
+                audio.Stop();
+                audio.clip = chasse2;
+                audio.Play();
+
+            }
+            if (distanceEnnemiPlusProche < rayonCol / 4 * 2 && distanceEnnemiPlusProche > rayonCol / 4 * 1 && !audio.clip == chasse3)
+            {// le 2/4 le plus proche
+                audio.Stop();
+                audio.clip = chasse3;
+                audio.Play();
+            }
+            if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !audio.clip == chasse4)
+            {// le 1/4 le plus proche
+                audio.Stop();
+                audio.clip = chasse4;
+                audio.Play();
+            }
+        }
+        else
+        {
+            audio.loop = false;
+        }*/

@@ -35,7 +35,6 @@ public class Ai_script : MonoBehaviour
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
             Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
         }
-        print("Moi " + gameObject.name + "je cours après " + navAgent.destination);
     } // Fin du Update
 
 
