@@ -61,54 +61,54 @@ public class santeMentale : MonoBehaviour
                 if(!(lien.transform.tag == "terrain")) // s'il n'y a pas de terrain entre nous,
                 {
                     float distance = Vector3.Distance(objectTouchee.transform.position, transform.position); // renvoie la distance entre moi et les monstres
-                    if(distance < distanceEnnemiPlusProche){
+                    if(distance < distanceEnnemiPlusProche){ // on détecte et on associe le monstre le plus proche à une variable
                         distanceEnnemiPlusProche = distance;
-                        ennemiPlusProche = objectTouchee;
-                        if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true) {
-                            audio.loop = true;
-                            audio2.loop = true;
-                            audio3.loop = true;
-                            audio4.loop = true;
+                        ennemiPlusProche = objectTouchee; 
+                        if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true) { // par la suite, ce monstre sert de référence pour jouer une musique qui change selon la distance
+                            //audio.loop = true;
+                            //audio2.loop = true;
+                            //audio3.loop = true;
+                            //audio4.loop = true;
                             print("Je recherche quoi jouer");
                             if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol / 4 * 3 && !JoueChasse1) {//le 1/4 le plus loin
-                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = true;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
                                 audio.volume = 1;
                                 audio.Play();
-                                enCours = audio;
+                                //enCours = audio;
                                 print("zone 1 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 3 && distanceEnnemiPlusProche > rayonCol / 4 * 2 && !JoueChasse2) {// le 2/4 le plus loin
-                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = true;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
                                 audio.Play();
-                                enCours = audio2;
+                                //enCours = audio2;
                                 print("zone 2 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 2 && distanceEnnemiPlusProche > rayonCol / 4 * 1 && !JoueChasse3) {// le 2/4 le plus proche
-                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = true;
                                 JoueChasse4 = false;
                                 audio.Play();
-                                enCours = audio3;
+                                //enCours = audio3;
                                 print("zone 3 activé");
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4) {// le 1/4 le plus proche
-                                StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = true;
                                 audio.Play();
-                                enCours = audio4;
+                                //enCours = audio4;
                                 print("zone 4 activé");
                             }
                             
@@ -119,15 +119,9 @@ public class santeMentale : MonoBehaviour
                     }
                     if(sanite >= 0f){ // si la santé mentale n'est pas à 0
                         //La santé mentale diminue selon une fonction voir ici: https://www.desmos.com/calculator/2jjemrx9vn?lang=fr
-                        //sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
+                        sanite -= ((Mathf.Pow(distance, -.7f)* degatMinDistance) + degatMaxDistance) * Time.deltaTime;
                     }
                 }
-            }
-            if(objectTouchee.gameObject.tag =="effetSable")
-            {
-
-                //print("Je touche une zone de sable!");
-                objectTouchee.gameObject.SetActive(true);
             }
         }
         

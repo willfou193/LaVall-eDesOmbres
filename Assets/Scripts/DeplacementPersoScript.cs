@@ -64,10 +64,12 @@ public class DeplacementPersoScript : MonoBehaviour
     public GameObject numPad;
     #endregion
     public GameObject[] ennemis;
-
+    private checkPointControl checkPoCtrl;
     // Start is called before the first frame update
     void Start()
     {
+        checkPoCtrl = GameObject.FindGameObjectWithTag("checkPoCtrl").GetComponent<checkPointControl>();
+        transform.position = checkPoCtrl.dernierCheckPoint;
         mort = false;
         ennemis = GameObject.FindGameObjectsWithTag("monstre");
         rigidbodyPerso = GetComponent<Rigidbody>();
@@ -293,10 +295,5 @@ public class DeplacementPersoScript : MonoBehaviour
     void RegainDenergie()
     {
         peutRegagnerEndurance = true;
-    }
-    public void FinNiveau1()
-    {
-        SceneManager.LoadScene(0);
-        Cursor.lockState = CursorLockMode.None;
     }
 }

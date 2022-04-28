@@ -35,6 +35,12 @@ public class Ai_script : MonoBehaviour
         if(invulnerableEtourdi){ // cette bool deviens true dans le script LampeCollision
             Invoke("resetInvulnerabiliteEtourdi", tempsInvulnerable); // appel une fonction pour reset la bool a false
         }
+        if (DeplacementPersoScript.mort == true)
+        {
+            enChasse = false;
+            AllerAuProchainPoint();
+            print("Le joueur est mort et je vais au prochain point");
+        }
     } // Fin du Update
 
 
