@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Audio;
+
 public class santeMentale : MonoBehaviour
 {
     public float rayonCol; // rayon du cercle de collision
@@ -22,7 +24,7 @@ public class santeMentale : MonoBehaviour
     public FilmGrain _Grain; // Post-processing vignettage
     public Text santeMentaleUi;
     //Son de toutes les musiques de chasse
-    public AudioSource audio;
+    public AudioSource audio1;
     public AudioSource audio2;
     public AudioSource audio3;
     public AudioSource audio4;
@@ -30,6 +32,9 @@ public class santeMentale : MonoBehaviour
     public AudioClip chasse2;
     public AudioClip chasse3;
     public AudioClip chasse4;
+    public AudioMixerGroup chs1;
+    float vl1;
+    
     public bool sonChassePeutJoue = true;
     bool JoueChasse1;
     bool JoueChasse2;
@@ -47,7 +52,8 @@ public class santeMentale : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
+        chs1.audioMixer.GetFloat("Volume", out vl1);
         float distanceEnnemiPlusProche = Mathf.Infinity; // distance "de base"
         Collider ennemiPlusProche = null;
         //créer un cercle autour du joueur et créer un tableau de collider de ce qu'il touche
@@ -65,56 +71,86 @@ public class santeMentale : MonoBehaviour
                         distanceEnnemiPlusProche = distance;
                         ennemiPlusProche = objectTouchee; 
                         if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true) { // par la suite, ce monstre sert de référence pour jouer une musique qui change selon la distance
-                            //audio.loop = true;
-                            //audio2.loop = true;
-                            //audio3.loop = true;
-                            //audio4.loop = true;
-                            print("Je recherche quoi jouer");
+                            audio1.loop = true;
+                            audio2.loop = true;
+                            audio3.loop = true;
+                            audio4.loop = true;
+                            ArreterCoroutines();
+                            /*print("Je recherche quoi jouer");*/
                             if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > rayonCol / 4 * 3 && !JoueChasse1) {//le 1/4 le plus loin
-                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
                                 JoueChasse1 = true;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
-                                audio.volume = 1;
-                                audio.Play();
-                                //enCours = audio;
+                                audio1.volume = 1;
+                                audio1.Play();
+                                /*enCours = audio;*/
                                 print("zone 1 activé");
                             }
+                            else if (!JoueChasse1)
+                            {
+                                
+                                if (vl1 > -80) {
+                                    vl1 -= 0.1f;
+                                }
+                                
+                                chs1.audioMixer.SetFloat("Volume", -80);
+                            }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 3 && distanceEnnemiPlusProche > rayonCol / 4 * 2 && !JoueChasse2) {// le 2/4 le plus loin
-                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
                                 JoueChasse1 = false;
                                 JoueChasse2 = true;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
-                                audio.Play();
-                                //enCours = audio2;
+                                audio2.Play();
+                                /*enCours = audio2;*/
                                 print("zone 2 activé");
                             }
+                            else if (!JoueChasse2)
+                            {
+                                /*StartCoroutine(FonduSonore.StartFade(audio2, 0.5f, 0f));*/
+                            }
                             if (distanceEnnemiPlusProche < rayonCol / 4 * 2 && distanceEnnemiPlusProche > rayonCol / 4 * 1 && !JoueChasse3) {// le 2/4 le plus proche
-                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = true;
                                 JoueChasse4 = false;
-                                audio.Play();
-                                //enCours = audio3;
+                                audio3.Play();
+                                /*enCours = audio3;*/
                                 print("zone 3 activé");
                             }
+                            else if (!JoueChasse3)
+                            {
+                                /*StartCoroutine(FonduSonore.StartFade(audio3, 0.5f, 0f));*/
+                            }
                             if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4) {// le 1/4 le plus proche
-                                //StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));
+                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = true;
-                                audio.Play();
-                                //enCours = audio4;
+                                audio4.Play();
+                                /*enCours = audio4;*/
                                 print("zone 4 activé");
+                                
                             }
-                            
+                            else if (!JoueChasse4)
+                            {
+                                /*StartCoroutine(FonduSonore.StartFade(audio4, 0.5f, 0f));*/
+                            }
+
                         }
                         else{
-                            audio.loop = false;
+                            audio1.loop = false;
+                            audio2.loop = false;
+                            audio3.loop = false;
+                            audio4.loop = false;
+                            StartCoroutine(FonduSonore.StartFade(audio1, 2f, 0f));
+                            StartCoroutine(FonduSonore.StartFade(audio2, 2f, 0f));
+                            StartCoroutine(FonduSonore.StartFade(audio3, 2f, 0f));
+                            StartCoroutine(FonduSonore.StartFade(audio4, 2f, 0f));
                         }
                     }
                     if(sanite >= 0f){ // si la santé mentale n'est pas à 0
@@ -137,6 +173,10 @@ public class santeMentale : MonoBehaviour
 
     }//fin du update
 
+    public void ArreterCoroutines()
+    {
+        StopAllCoroutines();
+    }
     private void OnTriggerStay(Collider infoCol)
     {
         if(infoCol.gameObject.tag == "feuDeCamp")
