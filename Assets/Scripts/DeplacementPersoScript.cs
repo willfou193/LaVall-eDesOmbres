@@ -42,7 +42,6 @@ public class DeplacementPersoScript : MonoBehaviour
     float jaugeDeSprint = 6f;
     public float jaugeDeSprintMax = 6f;
     bool peutRegagnerEndurance = true;
-    bool enMarche = false;
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
     public Animator joueurAnim;
@@ -103,11 +102,7 @@ public class DeplacementPersoScript : MonoBehaviour
             float hDeplacementFPS = Input.GetAxis("Horizontal") * vitesseDeplacement;
 
             GetComponent<Rigidbody>().velocity = transform.forward * vDeplacementFPS + transform.right * hDeplacementFPS + new Vector3(0, rigidbodyPerso.velocity.y, 0);
-            if(vDeplacementFPS > 0){
-                enMarche = true;
-            }else{
-                enMarche = false;
-            }
+            
 
             //Section course du joueur
             #region Course
