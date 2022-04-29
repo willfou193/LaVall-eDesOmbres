@@ -12,6 +12,8 @@ TagManager:
   - gaz
   - mousqueton
   - bancActivable
+  - generatrice
+  - checkPoCtrl
   layers:
   - Default
   - TransparentFX

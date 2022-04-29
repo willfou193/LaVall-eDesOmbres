@@ -316,9 +316,10 @@ GameObject:
   - component: {fileID: 9101513889673387553}
   - component: {fileID: 9101513889673387582}
   - component: {fileID: 914822722}
+  - component: {fileID: 951158890}
   m_Layer: 0
   m_Name: collider
-  m_TagString: monstre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,6 +354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AI: {fileID: 9101513891111215489}
   tempsReset: 5
+  criMonstre: {fileID: 8300000, guid: 654f4d55a5789d740b801847a3b51a55, type: 3}
+  joueur: {fileID: 0}
 --- !u!54 &914822722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -369,6 +372,102 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &951158890
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101513889673387555}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.267
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9101513890944145966
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +480,7 @@ GameObject:
   - component: {fileID: 9101513890944145964}
   m_Layer: 0
   m_Name: parentEnnemi
-  m_TagString: monstre
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 9101513890944145966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.18, y: 0.061, z: 15.05}
-  m_LocalScale: {x: 2.403744, y: 2.403744, z: 2.403744}
+  m_LocalScale: {x: 0.85240597, y: 0.85240597, z: 0.85240597}
   m_Children:
   - {fileID: 5778123572239067073}
   - {fileID: 9101513891111215514}
@@ -412,11 +511,11 @@ NavMeshAgent:
   m_GameObject: {fileID: 9101513890944145966}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 8.16
-  m_Speed: 13
+  m_Radius: 1.8
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 240.95
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -441,7 +540,7 @@ GameObject:
   - component: {fileID: 1701675747}
   - component: {fileID: 1758818938}
   m_Layer: 0
-  m_Name: ennemis 2
+  m_Name: ennemis 1
   m_TagString: monstre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,8 +621,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.93, z: 0}
 --- !u!54 &1701675748
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -554,24 +653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joueur: {fileID: 0}
   tempsInvulnerable: 10
-  criMonstre: {fileID: 8300000, guid: 654f4d55a5789d740b801847a3b51a55, type: 3}
-  chasse1: {fileID: 8300000, guid: 3c5ee66fb98af8a42901a383c610b9cc, type: 3}
-  chasse2: {fileID: 8300000, guid: 02ccb970775ac4a4eb31dc7a47dab287, type: 3}
-  chasse3: {fileID: 8300000, guid: fb0170b23ad0aac4f939f878ccfe08aa, type: 3}
-  chasse4: {fileID: 8300000, guid: 53cf13f11dc82ee48a5be715be2b5a90, type: 3}
   navAgent: {fileID: 9101513890944145964}
   waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

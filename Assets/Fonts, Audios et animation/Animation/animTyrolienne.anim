@@ -609,11 +609,4 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 10.866667
-    functionName: FinNiveau1
-    data: 
-    objectReferenceParameter: {fileID: 3089295755384706153, guid: 7e8befad3676bb44aa9f9b866597f3ee, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
