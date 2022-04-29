@@ -188,7 +188,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 if(infoObjets.collider.tag == "mousqueton" && tyroTrouvee == true)
                 {
                     mousquetonPossede = true;
-                    Destroy(infoObjets.collider.gameObject);
+                    infoObjets.collider.gameObject.SetActive(false);
                     gameObject.GetComponent<AudioSource>().PlayOneShot(objetPrisSon);
                     bancActivableText.GetComponent<TMP_Text>().text = "Appuyez sur E si vous avez l'outil de tyrolienne";
                 }
@@ -197,8 +197,8 @@ public class DeplacementPersoScript : MonoBehaviour
                 }
                 if(infoObjets.collider.name == "outilSurTyrolienne"){
                     gameObject.GetComponent<AudioSource>().PlayOneShot(tyrolienne);
-                    joueurAnim.enabled = true;
-                    joueurAnim.SetBool("activeTyro", true);
+                    gameObject.GetComponent<Animator>().enabled = true;
+                    gameObject.GetComponent<Animator>().SetBool("activeTyro", true);
                     bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
                     Invoke("LacherTyro",11f);
                 }
@@ -259,8 +259,8 @@ public class DeplacementPersoScript : MonoBehaviour
         }
     }
     void LacherTyro(){
-        joueurAnim.SetBool("activeTyro",false);
-        joueurAnim.enabled = false;
+        gameObject.GetComponent<Animator>().SetBool("activeTyro",false);
+        gameObject.GetComponent<Animator>().enabled = false;
     }
     void ReloadScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //on relance la scène
