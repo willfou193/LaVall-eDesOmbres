@@ -40,7 +40,7 @@ public class vision_AI : MonoBehaviour {
     {
         AI.GetComponent<Ai_script>().enChasse = false;
         peutCrier = true;
-        joueur.GetComponent<santeMentale>().audio.Stop();
+        joueur.GetComponent<santeMentale>().GetComponent<AudioSource>().Stop();
         joueur.GetComponent<santeMentale>().sonChassePeutJoue = true;
         AI.GetComponent<Ai_script>().AllerAuProchainPoint();
     }
