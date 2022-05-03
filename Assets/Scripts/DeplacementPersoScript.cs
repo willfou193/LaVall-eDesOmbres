@@ -42,7 +42,6 @@ public class DeplacementPersoScript : MonoBehaviour
     float jaugeDeSprint = 6f;
     public float jaugeDeSprintMax = 6f;
     bool peutRegagnerEndurance = true;
-    bool enMarche = false;
     Vector3 vitesseDepAnim; // vitesse du d�placement pour l'animator
     Rigidbody rigidbodyPerso; // rigidbody du personnage
     public Animator joueurAnim;
@@ -62,6 +61,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public GameObject baril2;
     public GameObject baril3;
     public GameObject numPad;
+    public GameObject barreSprint;
     #endregion
     public GameObject[] ennemis;
     private checkPointControl checkPoCtrl;
@@ -103,11 +103,7 @@ public class DeplacementPersoScript : MonoBehaviour
             float hDeplacementFPS = Input.GetAxis("Horizontal") * vitesseDeplacement;
 
             GetComponent<Rigidbody>().velocity = transform.forward * vDeplacementFPS + transform.right * hDeplacementFPS + new Vector3(0, rigidbodyPerso.velocity.y, 0);
-            if(vDeplacementFPS > 0){
-                enMarche = true;
-            }else{
-                enMarche = false;
-            }
+            
 
             //Section course du joueur
             #region Course
@@ -137,6 +133,8 @@ public class DeplacementPersoScript : MonoBehaviour
             {
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
+            barreSprint.GetComponent<RectTransform>().sizeDelta = new Vector2((400/jaugeDeSprintMax) * jaugeDeSprint ,20); //On modifie en temps réel la longueur du UI en fonction de la jauge de sprint
+            print(jaugeDeSprint);
             #endregion
             #endregion
             #region lampeDePoche

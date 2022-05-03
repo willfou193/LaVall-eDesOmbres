@@ -60,7 +60,7 @@ public class Ai_script : MonoBehaviour
     }
     public void LeMonstreCourt()
     {
-       navAgent.speed = 3f;
+       navAgent.speed = 13f;
     }
     private void OnTriggerEnter(Collider InfoCol) {
         if(InfoCol.gameObject.tag == "waypoint"){ //si le monstre touche un waypoint
