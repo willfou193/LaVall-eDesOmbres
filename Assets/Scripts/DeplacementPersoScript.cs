@@ -134,7 +134,6 @@ public class DeplacementPersoScript : MonoBehaviour
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
             barreSprint.GetComponent<RectTransform>().sizeDelta = new Vector2((400/jaugeDeSprintMax) * jaugeDeSprint ,20); //On modifie en temps réel la longueur du UI en fonction de la jauge de sprint
-            print(jaugeDeSprint);
             #endregion
             #endregion
             #region lampeDePoche
