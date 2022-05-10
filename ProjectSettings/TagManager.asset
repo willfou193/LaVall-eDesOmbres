@@ -15,6 +15,7 @@ TagManager:
   - generatrice
   - checkPoCtrl
   - waypointTornade
+  - lumiere
   layers:
   - Default
   - TransparentFX
