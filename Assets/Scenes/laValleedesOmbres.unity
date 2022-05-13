@@ -123444,6 +123444,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1070573056}
     m_Modifications:
+    - target: {fileID: 664184153, guid: f98df516b01f33b43bd10b1a7fa08be6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664184156, guid: f98df516b01f33b43bd10b1a7fa08be6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2335498083326108536, guid: f98df516b01f33b43bd10b1a7fa08be6, type: 3}
       propertyPath: m_Name
       value: lumiere
