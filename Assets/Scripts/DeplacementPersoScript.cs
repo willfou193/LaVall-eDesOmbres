@@ -211,10 +211,6 @@ public class DeplacementPersoScript : MonoBehaviour
                     infoObjets.collider.gameObject.GetComponent<barriere>().PartirGenerateur();
 
                 }
-                if(infoObjets.collider.tag == "papierReponse")
-                {
-                    //infoObjets.collider.gameObject.GetComponent<afficherHistoire>().AfficherBonnePage();
-                }
             }
             #endregion
             if(gameObject.GetComponent<santeMentale>().sanite <0.1f){
