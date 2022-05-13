@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class afficherHistoire : MonoBehaviour
 {
+    public GameObject[] lettre;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,12 @@ public class afficherHistoire : MonoBehaviour
     {
         
     }
-    void AfficherBonnePage() { }
+    public void AfficherBonnePage(string nomCarte){
+        nomCarte.Substring(6, 1);
+        print(nomCarte);
+        int numero = int.Parse(nomCarte);
+        lettre[numero].SetActive(true);
+        
+
+}
 }

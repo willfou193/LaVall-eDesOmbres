@@ -213,7 +213,8 @@ public class DeplacementPersoScript : MonoBehaviour
                 }
                 if(infoObjets.collider.tag == "papierReponse")
                 {
-                    //infoObjets.collider.gameObject.GetComponent<afficherHistoire>().AfficherBonnePage();
+                    string nomCarte = infoObjets.collider.name;
+                    infoObjets.collider.gameObject.GetComponent<afficherHistoire>().AfficherBonnePage(nomCarte);
                 }
             }
             #endregion
