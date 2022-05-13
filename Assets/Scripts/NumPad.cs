@@ -13,6 +13,7 @@ public class NumPad : MonoBehaviour
     public string bonneReponse;
     int nombreDeNumMax = 4;
     public Text codeText;
+    public Text bonneReponseText;
     public GameObject numpad;
     public GameObject monteCharge;
     private void Start()
@@ -25,6 +26,7 @@ public class NumPad : MonoBehaviour
                 bonneReponse += Random.Range(0, 9).ToString(); //On cr�er un chiffre al�atoire et on le concat�ne � la string
         }
         print("la bonne r�ponse est " + bonneReponse);
+        bonneReponseText.text = bonneReponse.ToString();
         numpad.SetActive(false);
     }
     private void Update()
