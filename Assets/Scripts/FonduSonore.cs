@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public static class FonduSonore
 {
-    public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
+    public static IEnumerator StartFade(AudioMixerGroup audioMixer, float duration, float targetVolume)
     {
         float currentTime = 0;
-        float start = audioSource.volume;
+        audioMixer.audioMixer.GetFloat("Volume", out float startVolume);
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            audioMixer.audioMixer.SetFloat("Volume", Mathf.Lerp(startVolume, targetVolume, currentTime / duration));
             yield return null;
         }
         yield break;
