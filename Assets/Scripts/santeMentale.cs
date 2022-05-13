@@ -40,6 +40,7 @@ public class santeMentale : MonoBehaviour
     float vl2;
     float vl3;
     float vl4;
+    
 
     public bool sonChassePeutJoue = true;
     bool JoueChasse1;
@@ -63,13 +64,20 @@ public class santeMentale : MonoBehaviour
         chs2.audioMixer.GetFloat("Volume", out vl2);
         chs3.audioMixer.GetFloat("Volume", out vl3);
         chs4.audioMixer.GetFloat("Volume", out vl4);
+
+        Coroutine fondu1 = StartCoroutine(FonduSonore.StartFade(chs1, 0f, -80f));
+        Coroutine fondu2 = StartCoroutine(FonduSonore.StartFade(chs2, 0f, -80f));
+        Coroutine fondu3 = StartCoroutine(FonduSonore.StartFade(chs3, 0f, -80f));
+        Coroutine fondu4 = StartCoroutine(FonduSonore.StartFade(chs4, 0f, -80f));
+
         float distanceEnnemiPlusProche = Mathf.Infinity; // distance "de base"
         Collider ennemiPlusProche = null;
         //créer un cercle autour du joueur et créer un tableau de collider de ce qu'il touche
         Collider[] objectsDansCercle = Physics.OverlapSphere(gameObject.transform.position, rayonCol); 
         foreach (var objectTouchee in objectsDansCercle) // pour chaque object dans le cercle 
         {
-            if(objectTouchee.gameObject.tag == "monstre") // on s'assure que les objets soient des monstres
+            
+            if (objectTouchee.gameObject.tag == "monstre") // on s'assure que les objets soient des monstres
             {
                 RaycastHit lien;
                 Physics.Linecast(transform.position, objectTouchee.transform.position, out lien); // on trace une ligne entre moi et les monstres dans le cercle
@@ -84,29 +92,30 @@ public class santeMentale : MonoBehaviour
                             audio2.loop = true;
                             audio3.loop = true;
                             audio4.loop = true;
-                            ArreterCoroutines();
+                            
                             /*print("Je recherche quoi jouer");*/
                             if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > (rayonCol / 4) * 3 && !JoueChasse1) {//le 1/4 le plus loin
                                 /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
+
                                 JoueChasse1 = true;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
                                 audio1.volume = 1;
-                                vl1 = 0;
-                                chs4.audioMixer.SetFloat("Volume", vl1);
+                                vl1 = -4f;
+                                chs1.audioMixer.SetFloat("Volume", vl1);
                                 audio1.Play();
                                 /*enCours = audio;*/
                                 print("zone 1 activé");
                             }
                             else if (!JoueChasse1)
                             {
-                                
-                                if (vl1 > -80f) {
+                                StartCoroutine(FonduSonore.StartFade(chs1, 0f, -80f));
+                                /*if (vl1 > -80f) {
                                     vl1 -= 0.5f;
                                 }
                                 
-                                chs1.audioMixer.SetFloat("Volume", vl1);
+                                chs1.audioMixer.SetFloat("Volume", vl1);*/
                             }
                             if (distanceEnnemiPlusProche < (rayonCol / 4) * 3 && distanceEnnemiPlusProche > (rayonCol / 4) * 2 && !JoueChasse2) {// le 2/4 le plus loin
                                 /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
@@ -115,21 +124,21 @@ public class santeMentale : MonoBehaviour
                                 JoueChasse3 = false;
                                 JoueChasse4 = false;
                                 audio2.volume = 1;
-                                vl2 = 0;
-                                chs4.audioMixer.SetFloat("Volume", vl2);
+                                vl2 = -4f;
+                                chs2.audioMixer.SetFloat("Volume", vl2);
                                 audio2.Play();
                                 /*enCours = audio2;*/
                                 print("zone 2 activé");
                             }
                             else if (!JoueChasse2)
                             {
-
-                                if (vl2 > -80f)
+                                StartCoroutine(FonduSonore.StartFade(chs2, 0f, -80f));
+                                /*if (vl2 > -80f)
                                 {
                                     vl2 -= 0.5f;
                                 }
 
-                                chs2.audioMixer.SetFloat("Volume", vl2);
+                                chs2.audioMixer.SetFloat("Volume", vl2);*/
                             }
                             if (distanceEnnemiPlusProche < (rayonCol / 4) * 2 && distanceEnnemiPlusProche > (rayonCol / 4) * 1 && !JoueChasse3) {// le 2/4 le plus proche
                                 /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
@@ -138,21 +147,21 @@ public class santeMentale : MonoBehaviour
                                 JoueChasse3 = true;
                                 JoueChasse4 = false;
                                 audio3.volume = 1;
-                                vl3 = 0;
-                                chs4.audioMixer.SetFloat("Volume", vl3);
+                                vl3 = -4f;
+                                chs3.audioMixer.SetFloat("Volume", vl3);
                                 audio3.Play();
                                 /*enCours = audio3;*/
                                 print("zone 3 activé");
                             }
                             else if (!JoueChasse3)
                             {
-
-                                if (vl3 > -80f)
+                                StartCoroutine(FonduSonore.StartFade(chs3, 0f, -80f));
+                                /*if (vl3 > -80f)
                                 {
                                     vl3 -= 0.5f;
                                 }
 
-                                chs3.audioMixer.SetFloat("Volume", vl3);
+                                chs3.audioMixer.SetFloat("Volume", vl3);*/
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4) {// le 1/4 le plus proche
                                 /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
@@ -161,7 +170,7 @@ public class santeMentale : MonoBehaviour
                                 JoueChasse3 = false;
                                 JoueChasse4 = true;
                                 audio4.volume = 1;
-                                vl4 = 0;
+                                vl4 = -4f;
                                 chs4.audioMixer.SetFloat("Volume", vl4);
                                 audio4.Play();
                                 /*enCours = audio4;*/
@@ -170,13 +179,13 @@ public class santeMentale : MonoBehaviour
                             }
                             else if (!JoueChasse4)
                             {
-
-                                if (vl4 > -80f)
+                                StartCoroutine(FonduSonore.StartFade(chs4, 0f, -80f));
+                                /*if (vl4 > -80f)
                                 {
                                     vl4 -= 0.5f;
                                 }
 
-                                chs4.audioMixer.SetFloat("Volume", vl4);
+                                chs4.audioMixer.SetFloat("Volume", vl4);*/
                             }
 
                         }
@@ -185,10 +194,14 @@ public class santeMentale : MonoBehaviour
                             audio2.loop = false;
                             audio3.loop = false;
                             audio4.loop = false;
-                            StartCoroutine(FonduSonore.StartFade(audio1, 2f, 0f));
-                            StartCoroutine(FonduSonore.StartFade(audio2, 2f, 0f));
-                            StartCoroutine(FonduSonore.StartFade(audio3, 2f, 0f));
-                            StartCoroutine(FonduSonore.StartFade(audio4, 2f, 0f));
+                            audio1.Stop();
+                            audio2.Stop();
+                            audio3.Stop();
+                            audio4.Stop();
+                            StartCoroutine(FonduSonore.StartFade(chs1, 0f, -80f));
+                            StartCoroutine(FonduSonore.StartFade(chs2, 0f, -80f));
+                            StartCoroutine(FonduSonore.StartFade(chs3, 0f, -80f));
+                            StartCoroutine(FonduSonore.StartFade(chs4, 0f, -80f));
                         }
                     }
                     if(sanite >= 0f && distanceEnnemiPlusProche < (rayonCol / 4) * 2)
