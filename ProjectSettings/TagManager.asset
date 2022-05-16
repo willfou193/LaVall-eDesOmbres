@@ -16,6 +16,7 @@ TagManager:
   - checkPoCtrl
   - waypointTornade
   - lumiere
+  - papierReponse
   layers:
   - Default
   - TransparentFX

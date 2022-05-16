@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Lettres : MonoBehaviour
 {
-    public GameObject[] lettres;
-    int numLettre;
-    bool lettreActive;
+    public GameObject[] lettres; // tableau des lettres (histoire)
+    bool lettreActive = false;
+     int nombre;
 
     public void AfficherBonnePage(string lettre){
+        menuPause.JeuPause = true;
+        lettreActive = true;
+        lettre.Substring(6,1); //il ne reste que le chiffre
+        //print(lettre.Substring(6,1)); retourne 1
+        int.TryParse(lettre, out nombre);
 
-        lettre.Substring(6,0);
-        int.Parse(numLettre);
-        lettres[numLettre].SetActive(true);
+        lettres[nombre].SetActive(true);
+    }
+    private void Update() {
+        // if(lettreActive && Input.GetKeyDown(KeyCode.Escape)){
+        //     lettreActive = false;
+        //     for(int i;i<6; i++){
+        //         lettres[i].SetActive(false);
+        //     }
+        // }
     }
 }
