@@ -92616,6 +92616,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1549124930125916324, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
+      propertyPath: lettres.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6133513597147358285, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -124695,6 +124699,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6133513597165566475, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
   m_PrefabInstance: {fileID: 1549315090}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2055591781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055591780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae2b40a7aebde8428d6d7c0298d6a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lettres: []
 --- !u!4 &2055591786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6133513597165566481, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
