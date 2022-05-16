@@ -8,5 +8,6 @@ public class Lettres : MonoBehaviour
 
     public void AfficherBonnePage(string lettre){
         
+        lettres[i].SetActive(true);
     }
 }
