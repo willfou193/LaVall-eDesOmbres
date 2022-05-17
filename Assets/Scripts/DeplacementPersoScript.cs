@@ -214,7 +214,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 if(infoObjets.collider.tag == "papierReponse")
                 {
                     string nomLettre = infoObjets.collider.name;
-                    GetComponent<Lettres>().AfficherBonnePage(nomLettre);
+                    GetComponent<afficherHistoire>().AfficherBonnePage(nomLettre);
                 }
             }
             #endregion
