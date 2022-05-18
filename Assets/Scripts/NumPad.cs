@@ -67,6 +67,7 @@ public class NumPad : MonoBehaviour
         if(code == bonneReponse)
         {
             monteCharge.GetComponent<MonteCharge>().MonterCharge();
+            joueur.GetComponent<Animator>().enabled = true;
             joueur.GetComponent<Animator>().SetBool("animFin", true);
             print("Fin du jeu");
             //activer la scin�matique
