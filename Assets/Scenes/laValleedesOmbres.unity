@@ -25145,6 +25145,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2338564442954919545, guid: 3bb006f1bb46c5d48a834d0cacc87405, type: 3}
   m_PrefabInstance: {fileID: 590918453}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &591108877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591108878}
+  - component: {fileID: 591108880}
+  - component: {fileID: 591108879}
+  m_Layer: 5
+  m_Name: Credits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &591108878
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591108877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1970180810}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &591108879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591108877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\xC9quipe de production\n\nWilliam Foucher\nChristopher Stevens\nJulien
+    Poirier Morin\n\nChef d'\xC9quipe\n\nWilliam Foucher\n\nDirecteur Technique\n\nWilliam
+    Foucher\n\nDirecteur Artistique\n\nChristopher Stevens\n\nDirecteur d'Int\xE9gration\n\nJulienPoirier
+    Morin\n\nDirecteur Sonore\n\nJulien Poirier Morin\n\n\nAssets\n\nPolygonFarm\n\n-B\xE2timents\n-V\xE9hicules\n-V\xE9g\xE9tation\n-outils
+    de d\xE9cor\n\nChristopher Stevens\n\n-Monstres\n-Bidons d'essence\n-Tyrolienne\n-outil
+    de tyrolienne\n-feu de camp\n\nUI\n\nChristopher Stevens\n\nLevel Design\n\nJulien
+    Poirier Morin\n\nEffets de Particules\n\nWilliam Foucher\n\nMusiques\n\nJulien
+    Poirier Morin\n\nEffets Sonores\n\nJulien Poirier Morin\n\nProgrammation des
+    ennemis\n\nWilliam Foucher\n\nProgrammation de la musique des monstres\n\nWilliam
+    Foucher \nJulien Poirier Morin\n\nProgrammation de l'interactivit\xE9 des objets\n\nWilliam
+    Foucher\n\nAnimations des Monstres\n\nChristopher Stevens\n\nAnimations des cin\xE9matiques\n\nJulien
+    Poirier Morin"
+--- !u!222 &591108880
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591108877}
+  m_CullTransparentMesh: 1
 --- !u!1 &596195570
 GameObject:
   m_ObjectHideFlags: 0
@@ -102678,6 +102768,7 @@ RectTransform:
   m_Children:
   - {fileID: 530133417}
   - {fileID: 1547979770}
+  - {fileID: 591108878}
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
