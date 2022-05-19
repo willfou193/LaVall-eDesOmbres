@@ -6,9 +6,10 @@ public class barriere : MonoBehaviour
 {
     public AudioClip generatricePart;
     public AudioClip generatriceEnMarche;
+    public GameObject porte;
     public void OuvrirPorte()
     {
-        print("la porte s'ouvre");
+        porte.transform.Rotate(0f, 90f, 0f);
     }
     public void PartirGenerateur(){
         gameObject.GetComponent<AudioSource>().PlayOneShot(generatricePart);
