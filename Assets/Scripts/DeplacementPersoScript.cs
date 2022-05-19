@@ -161,6 +161,7 @@ public class DeplacementPersoScript : MonoBehaviour
             {
                 if (infoObjets.collider.tag == "gaz")
                 {
+                    print("je prend du gaz");
                     nombreDeBaril += 1;
                     Destroy(infoObjets.collider.gameObject);
                     //nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
