@@ -27289,7 +27289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1798950045
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27326,6 +27326,7 @@ MonoBehaviour:
   codeText: {fileID: 671911828}
   numpad: {fileID: 1798950044}
   monteCharge: {fileID: 1221033208}
+  joueur: {fileID: 0}
 --- !u!1 &1813556270
 GameObject:
   m_ObjectHideFlags: 0
