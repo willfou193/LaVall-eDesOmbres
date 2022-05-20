@@ -12,10 +12,9 @@ public class afficherHistoire : MonoBehaviour
     {
         menuPause.JeuPause = true;
         lettreActive = true;
-        lettre.Substring(6, 1); //il ne reste que le chiffre
+        lettre = lettre.Substring(6, 1); //il ne reste que le chiffre
         //print(lettre.Substring(6,1)); retourne 1
         int.TryParse(lettre, out nombre);
-
         lettres[nombre].SetActive(true);
     }
     private void Update()

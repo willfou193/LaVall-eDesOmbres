@@ -18,6 +18,14 @@ public class NumPad : MonoBehaviour
     public GameObject monteCharge;
     public GameObject joueur;
     public static bool gagne = false;
+    public AudioClip sonbouton;
+    public AudioClip musiqueFin;
+    // objet à cacher lors de l'animation de fin
+    public Image cachePad;
+    public GameObject objet1;
+    public GameObject objet2;
+    public GameObject objet3;
+
     private void Start()
     {
         //bonneReponse = Random.Range(0,9).ToString();
@@ -44,6 +52,7 @@ public class NumPad : MonoBehaviour
     
     public void BoutonAppuyer()
     {
+        monteCharge.GetComponent<AudioSource>().PlayOneShot(sonbouton);
         string numero = EventSystem.current.currentSelectedGameObject.name; //renvoie le numero du bouton appuy�
         AjouterNum(numero); //Appel de la fonction avec le numero du bouton
     }
@@ -70,12 +79,21 @@ public class NumPad : MonoBehaviour
         if(code == bonneReponse)
         {
             monteCharge.GetComponent<MonteCharge>().MonterCharge();
-            joueur.GetComponent<Animator>().enabled = true;
             joueur.GetComponent<Animator>().SetBool("animFin", true);
+            joueur.GetComponent<Animator>().enabled = true;
             print("Fin du jeu");
             //activer la scin�matique
             gagne = true;
-            numpad.SetActive(false);
+            cachePad.enabled = false;
+            codeText.enabled = false;
+            objet1.SetActive(false);
+            objet2.SetActive(false);
+            objet3.SetActive(false);
+            Invoke("AppelerMusiqueFin", 33f);
         }
+    }
+
+    void AppelerMusiqueFin(){
+        monteCharge.GetComponent<AudioSource>().PlayOneShot(musiqueFin);
     }
 }
