@@ -18,6 +18,7 @@ public class NumPad : MonoBehaviour
     public GameObject numpad;
     public GameObject monteCharge;
     public GameObject joueur;
+    //Bool qui permet de savoir si le joueur a gagne la partie
     public static bool gagne = false;
     public AudioClip sonbouton;
     public AudioClip musiqueFin;
