@@ -22,7 +22,7 @@ public class vision_AI : MonoBehaviour {
                 gameObject.GetComponent<AudioSource>().PlayOneShot(criMonstre);
             }
             AI.GetComponent<Ai_script>().enChasse = true; // retourne la variable enChasse a true dans le script Ai_script
-            GetComponent<Animator>().Play("ChaseAnim"); //play animation chase quand en chase
+            AI.GetComponent<Animator>().Play("ChaseAnim"); //play animation chase quand en chase
             peutCrier = false;
             CancelInvoke("ReinitialisationChasse"); //rafraîchit le temps avant que le monstre retourne sur son chemain
         }
@@ -40,7 +40,7 @@ public class vision_AI : MonoBehaviour {
     void ReinitialisationChasse()
     {
         AI.GetComponent<Ai_script>().enChasse = false;
-        GetComponent<Animator>().Play("idleAnim"); //play animation idle quand pas en chase
+        AI.GetComponent<Animator>().Play("idleAnim"); //play animation idle quand pas en chase
         peutCrier = true;
         joueur.GetComponent<santeMentale>().GetComponent<AudioSource>().Stop();
         joueur.GetComponent<santeMentale>().sonChassePeutJoue = true;
