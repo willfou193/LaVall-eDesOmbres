@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NumPad : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class NumPad : MonoBehaviour
     public GameObject numpad;
     public GameObject monteCharge;
     public GameObject joueur;
+    //Bool qui permet de savoir si le joueur a gagne la partie
     public static bool gagne = false;
     public AudioClip sonbouton;
     public AudioClip musiqueFin;
@@ -27,6 +29,9 @@ public class NumPad : MonoBehaviour
     public GameObject objet3;
     public GameObject Ui;
     public GameObject lumiere1;
+    public Canvas canvas;
+    public GameObject textCredit;
+    public GameObject imageCredit;
 
     private void Start()
     {
@@ -94,10 +99,20 @@ public class NumPad : MonoBehaviour
             objet3.SetActive(false);
             lumiere1.SetActive(false);
             Invoke("AppelerMusiqueFin", 33f);
+            Invoke("Credits", 55f);
         }
     }
 
     void AppelerMusiqueFin(){
         monteCharge.GetComponent<AudioSource>().PlayOneShot(musiqueFin);
+        Invoke("ChangerScene",  94f);
+    }
+    void Credits(){
+        canvas.GetComponent<Animator>().SetBool("lancerCredit", true);
+        textCredit.SetActive(true);
+        imageCredit.SetActive(true);
+    }
+    void ChangerScene(){
+        SceneManager.LoadScene(0);
     }
 }

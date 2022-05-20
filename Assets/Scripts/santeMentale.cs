@@ -28,27 +28,29 @@ public class santeMentale : MonoBehaviour
     public AudioSource audio2;
     public AudioSource audio3;
     public AudioSource audio4;
+    //clip de toutes les musiques de chasse
     public AudioClip chasse1;
     public AudioClip chasse2;
     public AudioClip chasse3;
     public AudioClip chasse4;
+    //Audio mixer pour les musiques de chasse
     public AudioMixerGroup chs1;
     public AudioMixerGroup chs2;
     public AudioMixerGroup chs3;
     public AudioMixerGroup chs4;
+    //floats pour les volumes des musiques de chasse
     float vl1;
     float vl2;
     float vl3;
     float vl4;
 
-
+    //Bool pour gerer si la musique de chasse peut jouer et quelle musique jouer
     public bool sonChassePeutJoue = true;
     bool JoueChasse1;
     bool JoueChasse2;
     bool JoueChasse3;
     bool JoueChasse4;
-    //public AudioSource[] tableauChasse;
-    public AudioSource enCours;
+    
 
 
     public void Start()
@@ -61,11 +63,12 @@ public class santeMentale : MonoBehaviour
 
     void Update()
     {
+        //definition de la variable qui indique le volume de chaque audio mixer
         chs1.audioMixer.GetFloat("Volume", out vl1);
         chs2.audioMixer.GetFloat("Volume", out vl2);
         chs3.audioMixer.GetFloat("Volume", out vl3);
         chs4.audioMixer.GetFloat("Volume", out vl4);
-
+        //declarations des coroutines pour faire un fondu sonore sur les etapes des musiques de chasse
         Coroutine fondu1 = StartCoroutine(FonduSonore.StartFade(chs1, 0f, -80f));
         Coroutine fondu2 = StartCoroutine(FonduSonore.StartFade(chs2, 0f, -80f));
         Coroutine fondu3 = StartCoroutine(FonduSonore.StartFade(chs3, 0f, -80f));
@@ -91,16 +94,15 @@ public class santeMentale : MonoBehaviour
                         ennemiPlusProche = objectTouchee;
                         if (ennemiPlusProche.gameObject.GetComponent<Ai_script>().enChasse == true)
                         { // par la suite, ce monstre sert de référence pour jouer une musique qui change selon la distance
+                            //on demare le loop de la musique de chasse pour qu'elle continue de jouer meme quand son volume est a 0
                             audio1.loop = true;
                             audio2.loop = true;
                             audio3.loop = true;
                             audio4.loop = true;
 
-                            /*print("Je recherche quoi jouer");*/
                             if (distanceEnnemiPlusProche < rayonCol && distanceEnnemiPlusProche > (rayonCol / 4) * 3 && !JoueChasse1)
                             {//le 1/4 le plus loin
-                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
-
+                                // seul chasse1 peut jouer
                                 JoueChasse1 = true;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
@@ -109,21 +111,16 @@ public class santeMentale : MonoBehaviour
                                 vl1 = -4f;
                                 chs1.audioMixer.SetFloat("Volume", vl1);
                                 audio1.Play();
-                                /*enCours = audio;*/
                                 print("zone 1 activé");
                             }
                             else if (!JoueChasse1)
                             {
+                                //on fais fondre chasse1 un jusqu'au silence
                                 StartCoroutine(FonduSonore.StartFade(chs1, 0f, -80f));
-                                /*if (vl1 > -80f) {
-                                    vl1 -= 0.5f;
-                                }
-                                
-                                chs1.audioMixer.SetFloat("Volume", vl1);*/
                             }
                             if (distanceEnnemiPlusProche < (rayonCol / 4) * 3 && distanceEnnemiPlusProche > (rayonCol / 4) * 2 && !JoueChasse2)
                             {// le 2/4 le plus loin
-                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
+                                // seul chasse2 peut jouer
                                 JoueChasse1 = false;
                                 JoueChasse2 = true;
                                 JoueChasse3 = false;
@@ -132,22 +129,16 @@ public class santeMentale : MonoBehaviour
                                 vl2 = -4f;
                                 chs2.audioMixer.SetFloat("Volume", vl2);
                                 audio2.Play();
-                                /*enCours = audio2;*/
                                 print("zone 2 activé");
                             }
                             else if (!JoueChasse2)
                             {
+                                //on fais fondre chasse2 un jusqu'au silence
                                 StartCoroutine(FonduSonore.StartFade(chs2, 0f, -80f));
-                                /*if (vl2 > -80f)
-                                {
-                                    vl2 -= 0.5f;
-                                }
-
-                                chs2.audioMixer.SetFloat("Volume", vl2);*/
                             }
                             if (distanceEnnemiPlusProche < (rayonCol / 4) * 2 && distanceEnnemiPlusProche > (rayonCol / 4) * 1 && !JoueChasse3)
                             {// le 2/4 le plus proche
-                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
+                                // seul chasse3 peut jouer
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = true;
@@ -156,22 +147,16 @@ public class santeMentale : MonoBehaviour
                                 vl3 = -4f;
                                 chs3.audioMixer.SetFloat("Volume", vl3);
                                 audio3.Play();
-                                /*enCours = audio3;*/
                                 print("zone 3 activé");
                             }
                             else if (!JoueChasse3)
                             {
+                                //on fais fondre chasse3 un jusqu'au silence
                                 StartCoroutine(FonduSonore.StartFade(chs3, 0f, -80f));
-                                /*if (vl3 > -80f)
-                                {
-                                    vl3 -= 0.5f;
-                                }
-
-                                chs3.audioMixer.SetFloat("Volume", vl3);*/
                             }
                             if (distanceEnnemiPlusProche < rayonCol / 4 && distanceEnnemiPlusProche > 0.1f && !JoueChasse4)
                             {// le 1/4 le plus proche
-                                /*StartCoroutine(FonduSonore.StartFade(enCours, 0.5f, 0f));*/
+                                // seul chasse4 peut jouer
                                 JoueChasse1 = false;
                                 JoueChasse2 = false;
                                 JoueChasse3 = false;
@@ -180,24 +165,19 @@ public class santeMentale : MonoBehaviour
                                 vl4 = -4f;
                                 chs4.audioMixer.SetFloat("Volume", vl4);
                                 audio4.Play();
-                                /*enCours = audio4;*/
                                 print("zone 4 activé");
 
                             }
                             else if (!JoueChasse4)
                             {
+                                //on fais fondre chasse4 un jusqu'au silence
                                 StartCoroutine(FonduSonore.StartFade(chs4, 0f, -80f));
-                                /*if (vl4 > -80f)
-                                {
-                                    vl4 -= 0.5f;
-                                }
-
-                                chs4.audioMixer.SetFloat("Volume", vl4);*/
                             }
 
                         }
                         else
                         {
+                            //comme le monstre n'est pas en chasse, on fais fondre toutes les musiques et on les arrete
                             audio1.loop = false;
                             audio2.loop = false;
                             audio3.loop = false;
