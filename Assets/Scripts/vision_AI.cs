@@ -7,6 +7,7 @@ public class vision_AI : MonoBehaviour {
     //Script gèrant la vision du monstre ainsi que le temps de réinitialisation
     // avant qu'il retourne sur son chemain de base.
     public GameObject AI; // référence au monstre
+    public GameObject parent;
     public int tempsReset = 5; // temps avant que le monstre retourne sur son chemain
     bool peutCrier = true;
     public AudioClip criMonstre;
@@ -22,7 +23,7 @@ public class vision_AI : MonoBehaviour {
                 gameObject.GetComponent<AudioSource>().PlayOneShot(criMonstre);
             }
             AI.GetComponent<Ai_script>().enChasse = true; // retourne la variable enChasse a true dans le script Ai_script
-            AI.GetComponent<Animator>().Play("ChaseAnim"); //play animation chase quand en chase
+            parent.GetComponent<Animator>().Play("ChaseAnim"); //play animation chase quand en chase
             peutCrier = false;
             CancelInvoke("ReinitialisationChasse"); //rafraîchit le temps avant que le monstre retourne sur son chemain
         }
@@ -40,7 +41,7 @@ public class vision_AI : MonoBehaviour {
     void ReinitialisationChasse()
     {
         AI.GetComponent<Ai_script>().enChasse = false;
-        AI.GetComponent<Animator>().Play("idleAnim"); //play animation idle quand pas en chase
+        parent.GetComponent<Animator>().Play("idleAnim"); //play animation idle quand pas en chase
         peutCrier = true;
         joueur.GetComponent<santeMentale>().GetComponent<AudioSource>().Stop();
         joueur.GetComponent<santeMentale>().sonChassePeutJoue = true;
