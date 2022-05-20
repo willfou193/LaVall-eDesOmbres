@@ -73,6 +73,7 @@ public class NumPad : MonoBehaviour
             print("Fin du jeu");
             //activer la scin�matique
             gagne = true;
+            numpad.SetActive(false);
         }
     }
 }

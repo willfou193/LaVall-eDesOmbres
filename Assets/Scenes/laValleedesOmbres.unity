@@ -111561,13 +111561,45 @@ GameObject:
   - component: {fileID: 1801231865573124864}
   - component: {fileID: 4637368249971993065}
   - component: {fileID: 9165026767447553513}
+  - component: {fileID: 2402285847866512170}
+  - component: {fileID: 2402285847866512171}
   m_Layer: 0
-  m_Name: pasted__pCube88
+  m_Name: numpad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2402285847866512170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402285847866512169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7635969765e49e243a0a2354f17c9e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonneReponse: 
+  codeText: {fileID: 642981698}
+  numpad: {fileID: 1547979769}
+  monteCharge: {fileID: 678831336}
+  joueur: {fileID: 2055591780}
+--- !u!65 &2402285847866512171
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402285847866512169}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015, y: 0.01, z: 0.017}
+  m_Center: {x: 0.00060329284, y: 6.9914335e-12, z: 0.0000009536743}
 --- !u!33 &2426070893779667630
 MeshFilter:
   m_ObjectHideFlags: 0
