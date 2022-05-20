@@ -9,6 +9,8 @@ public class NumPad : MonoBehaviour
 {
     /*
      Ce script g�re le Numpad dans le monte charge. Le script g�re les boutons de 0 � 9 ainsi que retour et entrer
+     et l'animatino de fin de jeu
+     -william
      */
     string code = "";
     public string bonneReponse;
@@ -87,11 +89,11 @@ public class NumPad : MonoBehaviour
         {
             monteCharge.GetComponent<MonteCharge>().MonterCharge();
             Ui.SetActive(false);
-            joueur.GetComponent<Animator>().SetBool("animFin", true);
-            joueur.GetComponent<Animator>().enabled = true;
-            print("Fin du jeu");
+            joueur.GetComponent<Animator>().SetBool("animFin", true); 
             //activer la scin�matique
+            joueur.GetComponent<Animator>().enabled = true;
             gagne = true;
+            // On désactive plein de chose non nécessaire pour l'animation de fin
             cachePad.enabled = false;
             codeText.enabled = false;
             objet1.SetActive(false);

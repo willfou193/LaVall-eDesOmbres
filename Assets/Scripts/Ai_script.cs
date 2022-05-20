@@ -8,6 +8,7 @@ public class Ai_script : MonoBehaviour
     // Par défault, il suit un chemain et si le joueur apparait
     // dans son champs de vision, il le poursuit. S'il disparait pour
     // plus de X secondes, il revient sur son chemain.
+    // -William
     public GameObject joueur; // réfère au joueur
     public float tempsInvulnerable;
     public NavMeshAgent navAgent; //réfère au navMeshAgent

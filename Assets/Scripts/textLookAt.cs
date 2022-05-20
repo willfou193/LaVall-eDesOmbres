@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class textLookAt : MonoBehaviour
 {
+    // Petit script qui active le texte d'un object lorsqu'il s'en rapproche.
+    // -WIlliam
     public Transform joueur;
     void Update()
     {

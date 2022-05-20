@@ -5,6 +5,7 @@ using UnityEngine;
 public class LampeCollision : MonoBehaviour
 {
    // Gère la collision de la lampe avec les ennemis en réduisant leur vitesse à 0 lorsque la lampe les touchent
+   // -William
     private void OnTriggerEnter(Collider infoCol)
     {
         // si le collider de la lampe touche un monstre et qu'il n'est pas invulnérable à être étourdi,

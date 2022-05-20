@@ -6,6 +6,7 @@ public class vision_AI : MonoBehaviour {
 
     //Script gèrant la vision du monstre ainsi que le temps de réinitialisation
     // avant qu'il retourne sur son chemain de base.
+    //-William
     public GameObject AI; // référence au monstre
     public GameObject parent;
     public int tempsReset = 5; // temps avant que le monstre retourne sur son chemain

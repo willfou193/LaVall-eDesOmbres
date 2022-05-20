@@ -10,6 +10,8 @@ using UnityEngine.Audio;
 
 public class santeMentale : MonoBehaviour
 {
+    // Les ennemis font déscendre la santé mentale du joueur (William) et des sons de chasse jouent en fonction de la distance (Julien)
+    
     public float rayonCol; // rayon du cercle de collision
     // le nombre inscrit a tendence à rapprocher les dégat/s à 1m, de ce nombre. EX: 30f = 30 degats/s si la distance est 1m
     public float degatMinDistance;

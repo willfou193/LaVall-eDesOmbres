@@ -7,6 +7,8 @@ using TMPro;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
+    //Ce script est le centre du personnage, Il s'occupe des intérations avec les object, du déplacement, du sprint ainsi que de la lampe de poche 
+    // -William
     //D�claration des variables
     #region VariablesCamFPS
     public GameObject cameraFPS; // camera FPS pour le personnage
@@ -48,8 +50,8 @@ public class DeplacementPersoScript : MonoBehaviour
     public Animator joueurAnim;
     #endregion
     #region audio
+    //liste des audios clip de script
     public AudioClip tyrolienne;
-    public AudioClip marcheSon;
     public AudioClip monteChargeSon;
     public AudioClip lampeAllumeeSon;
     public AudioClip lampeFermeeSon;
@@ -57,6 +59,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public AudioClip notePapierSon;
     #endregion
     #region UI
+    //section UI du script
     int nombreDeBaril;
     public GameObject baril1;
     public GameObject baril2;
@@ -65,7 +68,6 @@ public class DeplacementPersoScript : MonoBehaviour
     public GameObject barreSprint;
     #endregion
     public GameObject[] ennemis;
-    private checkPointControl checkPoCtrl;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,21 +110,21 @@ public class DeplacementPersoScript : MonoBehaviour
 
             //Section course du joueur
             #region Course
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift)) //si le joueur sprint,
             {
-                if(jaugeDeSprint > 0f)
+                if(jaugeDeSprint > 0f)// et qu'il lui reste de l'énergie,
                 {
                     peutRegagnerEndurance = false;
                     vitesseDeplacement = 25;
                     jaugeDeSprint -= 1 * Time.deltaTime;
-                    cameraFPS.GetComponent<Camera>().fieldOfView = 65f;
+                    cameraFPS.GetComponent<Camera>().fieldOfView = 65f; // on augmente le Field of view
                     CancelInvoke("RegainDenergie");
                 }
-                else
+                else // si le joueur n'a plus d'énergie apres 2s il peut en récupérer
                 {
                     Invoke("RegainDenergie", 2f);
                     vitesseDeplacement = 20;
-                    cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
+                    cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f; // FOV normal
                 }
             }
             else {
@@ -130,7 +132,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 vitesseDeplacement = 20;
                 cameraFPS.GetComponent<Camera>().fieldOfView = 62.5f;
             }
-            if(jaugeDeSprint < jaugeDeSprintMax && peutRegagnerEndurance)
+            if(jaugeDeSprint < jaugeDeSprintMax && peutRegagnerEndurance) // lorsque la bool peutRegagnerEndurance est true, le joueur gagne de l'énergie
             {
                 jaugeDeSprint += 1 * Time.deltaTime;
             }
@@ -158,16 +160,16 @@ public class DeplacementPersoScript : MonoBehaviour
             }
             #endregion
             #region interaction
-            if (Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraFPS.transform.position, cameraFPS.transform.forward, out infoObjets, distanceActivableLoin))
+            if (Input.GetKeyDown(KeyCode.E) && Physics.Raycast(cameraFPS.transform.position, cameraFPS.transform.forward, out infoObjets, distanceActivableLoin)) // lorsqu'on appuie sur E et que le raycast se rend a quelque chose
             {
                 if (infoObjets.collider.tag == "gaz")
                 {
                     print("je prend du gaz");
                     nombreDeBaril += 1;
                     Destroy(infoObjets.collider.gameObject);
-                    //nbBarilUi.text = nombreDeBaril.ToString() + "/3"; //On actualise le nombre de baril en texte
+                  
                     switch (nombreDeBaril)
-                    {
+                    {// En fonction du nombre de baril possedé, on active le UI
                         case 1:
                             baril1.SetActive(true);
                             return;
@@ -194,17 +196,17 @@ public class DeplacementPersoScript : MonoBehaviour
                 if(infoObjets.collider.tag == "bancActivable" && mousquetonPossede){
                     bancActivable.SetActive(true);
                 }
-                if(infoObjets.collider.name == "outilSurTyrolienne"){
+                if(infoObjets.collider.name == "outilSurTyrolienne"){ // lorsque utilise la tyrolienne, on joue le son et l'animation de la tyrolienne
                     gameObject.GetComponent<AudioSource>().PlayOneShot(tyrolienne);
                     gameObject.GetComponent<Animator>().enabled = true;
                     gameObject.GetComponent<Animator>().SetBool("activeTyro", true);
                     bancActivable.GetComponent<Animator>().SetBool("activeTyro", true);
                     Invoke("LacherTyro",11f);
                 }
-                if (infoObjets.collider.name == "numpad")
+                if (infoObjets.collider.name == "numpad")// lorsque le joueur appui sur le numpad, 
                 {
                     Cursor.lockState = CursorLockMode.None;
-                    numPad.SetActive(true);
+                    numPad.SetActive(true); // le joueur a le menu numpad ouvert
                     menuPause.JeuPause = true;
                 }
                 if (infoObjets.collider.tag == "generatrice" && nombreDeBaril == 3)
@@ -213,19 +215,19 @@ public class DeplacementPersoScript : MonoBehaviour
                     infoObjets.collider.gameObject.GetComponent<barriere>().PartirGenerateur();
 
                 }
-                if(infoObjets.collider.tag == "papierReponse")
+                if(infoObjets.collider.tag == "papierReponse") // lorsque le joueur prend une note,
                 {
                     string nomLettre = infoObjets.collider.name;
                     print(nomLettre);
-                    GetComponent<afficherHistoire>().AfficherBonnePage(nomLettre);
+                    GetComponent<afficherHistoire>().AfficherBonnePage(nomLettre); // on appel la fonction avec le nom de la lettre
                 }
             }
             #endregion
-            if(gameObject.GetComponent<santeMentale>().sanite <0.1f){
-                foreach(GameObject ennemi in ennemis)
+            if(gameObject.GetComponent<santeMentale>().sanite <0.1f){ // lorsque le joueur n'a plus de santé mentale, il meurt et les ennemies s'en vont
+                foreach(GameObject ennemi in ennemis) // pour chaque ennemi
                 {
                     print(ennemi.gameObject.name);
-                    ennemi.GetComponent<Ai_script>().AllerAuProchainPoint();
+                    ennemi.GetComponent<Ai_script>().AllerAuProchainPoint(); // ils partent
                 }
                 joueurAnim.enabled = true;
                 joueurAnim.SetBool("joueurMort",true);
@@ -235,17 +237,17 @@ public class DeplacementPersoScript : MonoBehaviour
 
         }
     } // fin du update
-    void FermerLampeUv()
+    void FermerLampeUv() // lorsqu'on ferme la lampe, 
     {
         if(lampeUvAllumee == true)
         {
-            lampeUvAllumee = false;
+            lampeUvAllumee = false;//on désactive la lampe et son collider
             lumiereCol.enabled = false;
             lampeUV.enabled = false;
             gameObject.GetComponent<AudioSource>().PlayOneShot(lampeFermeeSon);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // Lorsque le joueur entre dans la zone de détection de la tyrolienne, il peut aller chercher la tyrolienne
     {
         if(other.gameObject.tag == "bancActivable")
         {
@@ -263,7 +265,7 @@ public class DeplacementPersoScript : MonoBehaviour
             MiseAJourLampe();
         }
     }
-    void LacherTyro(){
+    void LacherTyro(){ // Lorsque le joueur lache la tyrolienne, on désactive l'animator et on active le Ui de la 2e zone
         gameObject.GetComponent<Animator>().SetBool("activeTyro",false);
         gameObject.GetComponent<Animator>().enabled = false;
         UiZoneDeux.SetActive(true);
@@ -272,7 +274,7 @@ public class DeplacementPersoScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //on relance la scène
     }
 
-    void MiseAJourLampe() // Switch case en fonction du nombre de charge
+    void MiseAJourLampe() // Switch case en fonction du nombre de charge et active le nombre de charge en fonction du nombre disponnible
     {
         switch (chargeLampe)
         {
@@ -298,7 +300,7 @@ public class DeplacementPersoScript : MonoBehaviour
                 return;
         }
     }
-    void RegainDenergie()
+    void RegainDenergie() // peut reprendre son énergie
     {
         peutRegagnerEndurance = true;
     }

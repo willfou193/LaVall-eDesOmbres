@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class menuPause : MonoBehaviour
 {
 
+    //Ce script gère le fonctionnement du menu pause sur le joueur et son environnemnt.
+    // -christopher -william
+
     public static bool JeuPause = false;
 
     public GameObject menuPauseUI;
