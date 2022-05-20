@@ -16,6 +16,7 @@ public class NumPad : MonoBehaviour
     public GameObject numpad;
     public GameObject monteCharge;
     public GameObject joueur;
+    public static bool gagne = false;
     private void Start()
     {
         //bonneReponse = Random.Range(0,9).ToString();
@@ -71,6 +72,7 @@ public class NumPad : MonoBehaviour
             joueur.GetComponent<Animator>().SetBool("animFin", true);
             print("Fin du jeu");
             //activer la scin�matique
+            gagne = true;
         }
     }
 }
