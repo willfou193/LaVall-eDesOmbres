@@ -34,6 +34,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public bool tyroTrouvee = false;
     public TMP_Text bancActivableText;
     public TMP_Text bancRamassableText;
+    public GameObject UiZoneDeux;
     #endregion
     #region persoStats
     public static bool mort; // savoir si le personnage est mort ou vivant
@@ -265,6 +266,7 @@ public class DeplacementPersoScript : MonoBehaviour
     void LacherTyro(){
         gameObject.GetComponent<Animator>().SetBool("activeTyro",false);
         gameObject.GetComponent<Animator>().enabled = false;
+        UiZoneDeux.SetActive(true);
     }
     void ReloadScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //on relance la scène

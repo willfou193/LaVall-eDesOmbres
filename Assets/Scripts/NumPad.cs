@@ -25,6 +25,8 @@ public class NumPad : MonoBehaviour
     public GameObject objet1;
     public GameObject objet2;
     public GameObject objet3;
+    public GameObject Ui;
+    public GameObject lumiere1;
 
     private void Start()
     {
@@ -79,6 +81,7 @@ public class NumPad : MonoBehaviour
         if(code == bonneReponse)
         {
             monteCharge.GetComponent<MonteCharge>().MonterCharge();
+            Ui.SetActive(false);
             joueur.GetComponent<Animator>().SetBool("animFin", true);
             joueur.GetComponent<Animator>().enabled = true;
             print("Fin du jeu");
@@ -89,6 +92,7 @@ public class NumPad : MonoBehaviour
             objet1.SetActive(false);
             objet2.SetActive(false);
             objet3.SetActive(false);
+            lumiere1.SetActive(false);
             Invoke("AppelerMusiqueFin", 33f);
         }
     }
