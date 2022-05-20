@@ -49008,6 +49008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7423615319934529314, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+      propertyPath: joueur
+      value: 
+      objectReference: {fileID: 2055591786}
     - target: {fileID: 7423615320359149872, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -49056,6 +49060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: objets Interaction (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7423615320579321789, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+      propertyPath: joueur
+      value: 
+      objectReference: {fileID: 2055591786}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
 --- !u!1 &1304564240
@@ -66530,7 +66538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1570681347
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97262,7 +97270,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
@@ -108517,7 +108525,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
@@ -109328,7 +109336,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
@@ -109701,7 +109709,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
@@ -110320,7 +110328,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
@@ -110920,7 +110928,7 @@ PrefabInstance:
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: joueur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2055591780}
     - target: {fileID: 9101513889673387582, guid: 7dc2ab1a0ec2f4f40b997d8f779d068a, type: 3}
       propertyPath: parent
       value: 
