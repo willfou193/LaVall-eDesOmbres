@@ -1137,6 +1137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   mainCamAnim: {fileID: 0}
+  bruitage: {fileID: 0}
+  musique: {fileID: 0}
 --- !u!114 &97995438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4356,6 +4358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 447345756}
   mainCamAnim: {fileID: 1035764626}
+  bruitage: {fileID: 8300000, guid: f4026732a4e53b34bbc643f769bfa974, type: 3}
+  musique: {fileID: 8300000, guid: 85c0bae5f4675004e9f64ba51dfe5fc7, type: 3}
 --- !u!82 &447345759
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4366,11 +4370,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 85c0bae5f4675004e9f64ba51dfe5fc7, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6341,6 +6345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   mainCamAnim: {fileID: 0}
+  bruitage: {fileID: 0}
+  musique: {fileID: 0}
 --- !u!114 &684149695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11188,6 +11194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   mainCamAnim: {fileID: 0}
+  bruitage: {fileID: 0}
+  musique: {fileID: 0}
 --- !u!114 &1629565328
 MonoBehaviour:
   m_ObjectHideFlags: 0

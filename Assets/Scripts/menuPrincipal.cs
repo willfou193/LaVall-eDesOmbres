@@ -6,17 +6,24 @@ using UnityEngine.UI;
 
 public class menuPrincipal : MonoBehaviour
 {
-    // script fait pas Christ Et William, lorsque que je joueur appuis sur JOUER, l'animation du début du jeu se lance
-    // et on désactive tout le reste
-    public Canvas canvas; // référence au canva
+    // script fait pas Christ Et William, lorsque que je joueur appuis sur JOUER, l'animation du dï¿½but du jeu se lance
+    // et on dï¿½sactive tout le reste
+    public Canvas canvas; // rï¿½fï¿½rence au canva
     public Animator mainCamAnim;
-
+    public AudioClip bruitage;
+    public AudioClip musique;
+    private void Start() {
+        gameObject.GetComponent<AudioSource>().clip = musique;
+        gameObject.GetComponent<AudioSource>().Play();
+    }
     public void Jouer()//void pour load scene de jeu quand on click sur jouer
     {
+        gameObject.GetComponent<AudioSource>().Stop();
+        gameObject.GetComponent<AudioSource>().PlayOneShot(bruitage);
         mainCamAnim.SetBool("animDebut", true);
         Invoke("LancerPartie", 19f); //on appel la fonction pour charger la scene principale
-        canvas.enabled = false; // désactive le canvas
-        gameObject.GetComponent<AudioSource>().volume = 0f;
+        canvas.enabled = false; // dï¿½sactive le canvas
+        
     }
 
     public void quitter()//void pour quitter le jeu entirement 
