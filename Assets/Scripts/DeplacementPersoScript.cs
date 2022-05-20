@@ -7,8 +7,6 @@ using TMPro;
 
 public class DeplacementPersoScript : MonoBehaviour
 {
-    //Ce script est le centre du personnage, Il s'occupe des intérations avec les object, du déplacement, du sprint ainsi que de la lampe de poche 
-    // -William
     //D�claration des variables
     #region VariablesCamFPS
     public GameObject cameraFPS; // camera FPS pour le personnage
@@ -50,8 +48,8 @@ public class DeplacementPersoScript : MonoBehaviour
     public Animator joueurAnim;
     #endregion
     #region audio
-    //liste des audios clip de script
     public AudioClip tyrolienne;
+    public AudioClip marcheSon;
     public AudioClip monteChargeSon;
     public AudioClip lampeAllumeeSon;
     public AudioClip lampeFermeeSon;
@@ -59,7 +57,6 @@ public class DeplacementPersoScript : MonoBehaviour
     public AudioClip notePapierSon;
     #endregion
     #region UI
-    //section UI du script
     int nombreDeBaril;
     public GameObject baril1;
     public GameObject baril2;
@@ -68,6 +65,7 @@ public class DeplacementPersoScript : MonoBehaviour
     public GameObject barreSprint;
     #endregion
     public GameObject[] ennemis;
+    private checkPointControl checkPoCtrl;
     // Start is called before the first frame update
     void Start()
     {
