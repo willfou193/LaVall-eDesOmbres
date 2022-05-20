@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NumPad : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class NumPad : MonoBehaviour
     public GameObject objet1;
     public GameObject objet2;
     public GameObject objet3;
+    public Canvas canvas;
+    public GameObject textCredit;
+    public GameObject imageCredit;
 
     private void Start()
     {
@@ -90,10 +94,20 @@ public class NumPad : MonoBehaviour
             objet2.SetActive(false);
             objet3.SetActive(false);
             Invoke("AppelerMusiqueFin", 33f);
+            Invoke("Credits", 55f);
         }
     }
 
     void AppelerMusiqueFin(){
         monteCharge.GetComponent<AudioSource>().PlayOneShot(musiqueFin);
+        Invoke("ChangerScene",  94f);
+    }
+    void Credits(){
+        canvas.GetComponent<Animator>().SetBool("lancerCredit", true);
+        textCredit.SetActive(true);
+        imageCredit.SetActive(true);
+    }
+    void ChangerScene(){
+        SceneManager.LoadScene(0);
     }
 }
