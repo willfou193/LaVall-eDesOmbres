@@ -216,7 +216,6 @@ public class DeplacementPersoScript : MonoBehaviour
                 if(infoObjets.collider.tag == "papierReponse") // lorsque le joueur prend une note,
                 {
                     string nomLettre = infoObjets.collider.name;
-                    print(nomLettre);
                     GetComponent<afficherHistoire>().AfficherBonnePage(nomLettre); // on appel la fonction avec le nom de la lettre
                 }
             }

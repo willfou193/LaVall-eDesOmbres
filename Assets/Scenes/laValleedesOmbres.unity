@@ -103068,7 +103068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103178,7 +103178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103251,7 +103251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre7
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103324,7 +103324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103397,7 +103397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre4
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103470,7 +103470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString
@@ -103543,7 +103543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_Name
-      value: lettre6
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7194927332493705932, guid: 1e3a66745a17e4f409c740c36ab2e313, type: 3}
       propertyPath: m_TagString

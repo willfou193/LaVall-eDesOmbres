@@ -14,10 +14,12 @@ public class afficherHistoire : MonoBehaviour
     {
         menuPause.JeuPause = true;
         lettreActive = true;
-        lettre = lettre.Substring(6, 1); //il ne reste que le chiffre
-        //print(lettre.Substring(6,1)); retourne 1
         int.TryParse(lettre, out nombre); // passe de string à int
+        
+        nombre = nombre-1;
+        print("le nombre est " + nombre);
         lettres[nombre].SetActive(true); // active la bonne lettre.
+        print("J'active la lettre num" + lettre[nombre]);
     }
     private void Update()
     {
