@@ -49066,6 +49066,33 @@ PrefabInstance:
       objectReference: {fileID: 2055591786}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+--- !u!114 &1302310238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7423615320579321790, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+  m_PrefabInstance: {fileID: 1302310237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1302310239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7423615319934529315, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+  m_PrefabInstance: {fileID: 1302310237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1302310240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7423615319765742562, guid: ce8402e897ecead4395243d20f961f3f, type: 3}
+  m_PrefabInstance: {fileID: 1302310237}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1304564240
 GameObject:
   m_ObjectHideFlags: 0
@@ -66198,21 +66225,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1728026691}
     - target: {fileID: 6133513597165566478, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
+      propertyPath: UiZoneDeux
+      value: 
+      objectReference: {fileID: 1570681346}
+    - target: {fileID: 6133513597165566478, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: barreSprint
       value: 
       objectReference: {fileID: 1434361994}
     - target: {fileID: 6133513597165566478, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: bancActivable
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1302310240}
     - target: {fileID: 6133513597165566478, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: bancActivableText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1302310239}
     - target: {fileID: 6133513597165566478, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: bancRamassableText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1302310238}
     - target: {fileID: 6133513597165566479, guid: 74dd0f01b58e91c4daa81ddbcf630836, type: 3}
       propertyPath: volume
       value: 
